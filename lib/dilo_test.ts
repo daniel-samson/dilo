@@ -26,10 +26,7 @@ Deno.test("Dilo: validate required", () => {
 
     actual = dilo.validate({ bar: "bar", baz: null });
     assertEquals(actual, {
-        foo: {
-            errorCode: "foo.required",
-            operands: { attribute: "foo" },
-        },
+        "foo.required": { attribute: "foo" },
     });
 });
 
@@ -49,10 +46,7 @@ Deno.test("Dilo: validate sometimes", () => {
 
     actual = dilo.validate({ foo: 1, bar: null, baz: true });
     assertEquals(actual, {
-        bar: {
-            errorCode: "bar.string",
-            operands: { attribute: "bar" },
-        },
+        "bar.string": { attribute: "bar" },
     });
 
 });

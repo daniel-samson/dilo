@@ -36,15 +36,15 @@ export class Dilo {
      * @param object The object to validate.
      * @returns A record of field names and error messages if the object is invalid, or undefined if the object is valid.
      */
-    validate(object: Record<string, any>): Record<string, ValidatesError|undefined> | undefined {
-        const validation: Record<string, ValidatesError|undefined> = {};
+    validate(object: Record<string, any>): Record<string, Record<string, any>|undefined> | undefined {
+        const validation: Record<string, Record<string, any>|undefined> = {};
 
         const fields = Object.keys(this.rules);
         for (const field of fields){
             const fieldValidation = this.validateField(field, object);
 
             if (fieldValidation !== undefined) {
-                validation[field] = fieldValidation;
+                validation[fieldValidation.errorCode] = fieldValidation.operands;
             } // else its undefined, so we can ignore it
         }
 
