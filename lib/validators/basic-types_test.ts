@@ -6,8 +6,8 @@ import {
     DecimalType,
     IntegerType,
     JsonType,
-    NullableType,
     NumericType,
+    ObjectType,
     StringType
 } from "./basic-types.ts";
 
@@ -25,6 +25,31 @@ Deno.test("basic-types: is not array", () => {
     assertEquals(actual, expected);
 });
 
+Deno.test("basic-types: is object", () => {
+    const objectType = new ObjectType();
+    let actual = objectType.validate({"foo": {}}, { attribute: 'foo' });
+    let expected = undefined;
+    assertEquals(actual, expected);
+
+    actual = objectType.validate({"foo": {"foo": "bar"}}, { attribute: 'foo' });
+    expected = undefined;
+    assertEquals(actual, expected);
+
+    actual = objectType.validate({"foo": null}, { attribute: 'foo' });
+    expected = "foo.object";
+    assertEquals(actual, expected);
+});
+
+Deno.test("basic-types: is not object", () => {
+    const objectType = new ObjectType();
+    let actual = objectType.validate({"foo": "bar"}, { attribute: 'foo' });
+    let expected = "foo.object";
+    assertEquals(actual, expected);
+
+    actual = objectType.validate({"foo": 1}, { attribute: 'foo' });
+    expected = "foo.object";
+    assertEquals(actual, expected);
+});
 Deno.test("basic-types: is boolean", () => {
     const booleanType = new BooleanType();
     let actual = booleanType.validate({"foo": true}, { attribute: 'foo' });
@@ -215,26 +240,6 @@ Deno.test("basic-types: is not json", () => {
     assertEquals(actual, expected);
 
     actual = jsonType.validate({"foo": '{"foo": "bar"'}, { attribute: 'foo' });
-    assertEquals(actual, expected);
-});
-
-Deno.test("basic-types: is nullable", () => {
-    const nullableType = new NullableType();
-    let actual = nullableType.validate({"foo": null}, { attribute: 'foo' });
-    const expected = undefined;
-    assertEquals(actual, expected);
-
-    actual = nullableType.validate({"foo": "null"}, { attribute: 'foo' });
-    assertEquals(actual, expected);
-});
-
-Deno.test("basic-types: is not nullable", () => {
-    const nullableType = new NullableType();
-    let actual = nullableType.validate({"foo": "bar"}, { attribute: 'foo' });
-    const expected = "foo.nullable";
-    assertEquals(actual, expected);
-
-    actual = nullableType.validate({"foo": undefined}, { attribute: 'foo' });
     assertEquals(actual, expected);
 });
 

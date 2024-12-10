@@ -6,4 +6,11 @@ export interface Ruling {
      * The name of the rule.
      */
     ruleName(): string;
+
+    parseRule(rule: string): Record<string, any>;
+}
+
+export interface ParsedRule {
+    rule: string;
+    operands: Record<string, any>;
 }

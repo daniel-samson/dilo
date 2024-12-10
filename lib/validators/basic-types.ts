@@ -22,6 +22,36 @@ export class ArrayType implements Validates {
 }
 
 /**
+ * Validates that a value is an object.
+ */
+export class ObjectType implements Validates {
+    /**
+     * Validates that a value is an object.
+     *
+     * @param haystack The object to validate against.
+     * @param operands The operands to the rule.
+     * @returns A string containing the error message if the value is invalid, or undefined if the value is valid.
+     */
+    validate(haystack: Record<string, any>,  operands: Record<string, any>): string | undefined {
+        const needle = operands['attribute'];
+        if (haystack[needle] !== null && typeof haystack[needle] === 'object') {
+            if (operands['keys']) {
+                const keys = operands['keys'];
+                for (const key of keys) {
+                    if (!Object.prototype.hasOwnProperty.call(haystack[needle], key)) {
+                        return `${needle}.object`;
+                    }
+                }
+            }
+
+            return undefined;
+        }
+
+        return `${needle}.object`;
+    }
+}
+
+/**
  * Validates that a value is a boolean.
  */
 export class BooleanType implements Validates {
@@ -139,24 +169,6 @@ export class JsonType implements Validates {
         } catch (_) {
             return `${needle}.json`;
         }
-    }
-}
-
-export class NullableType implements Validates {
-    /**
-     * Validates that a value is an array.
-     *
-     * @param haystack The object to validate against.
-     * @param operands The operands to the rule.
-     * @returns A string containing the error message if the value is invalid, or undefined if the value is valid.
-     */
-    validate(haystack: Record<string, any>,  operands: Record<string, any>): string | undefined {
-        const needle = operands['attribute'];
-        if (haystack[needle] === null || haystack[needle] === 'null') {
-            return undefined;
-        }
-
-        return `${needle}.nullable`;
     }
 }
 

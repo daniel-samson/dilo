@@ -1,7 +1,7 @@
 /**
  * Common error messages
  */
-export default {
+export const en_us_translations = {
     "accepted": ":attribute must be accepted.",
     "accepted_if": ":attribute must be accepted when :other is :value.",
     "accepted_unless":

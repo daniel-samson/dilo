@@ -7,7 +7,12 @@ export interface Validates {
      *
      * @param haystack The object to validate against.
      * @param operands The operands to the rule.
-     * @returns A string containing the error message if the value is invalid, or undefined if the value is valid.
+     * @returns A string containing the error message if the value is invalid, false if the value is valid but validation should discontinue, or undefined if the value is valid.
      */
-    validate(haystack: Record<string, any>, operands: Record<string, any>): string | undefined;
+    validate(haystack: Record<string, any>, operands: Record<string, any>): string | false | undefined;
+}
+
+export interface ValidatesError {
+    errorCode: string,
+    operands: Record<string, any>
 }

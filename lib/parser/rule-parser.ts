@@ -1,7 +1,8 @@
-import {Ruling} from "../interfaces/ruling.ts";
+import {ParsedRule, Ruling} from "../interfaces/ruling.ts";
+import { RuleParserInterface } from "../mod.ts";
 
-export class RuleParser {
-    constructor(private rules: Ruling[] = []) {}
+export class RuleParser implements RuleParserInterface {
+    constructor(private ruleParsers: Ruling[] = []) {}
 
     /**
      * Registers a list of rules with the parser.
@@ -9,35 +10,47 @@ export class RuleParser {
      * @param rules The list of rules to register.
      */
     registerRules(rules: Ruling[]): void {
-        this.rules = rules;
+        this.ruleParsers = [...this.ruleParsers, ...rules];
     }
+
     /**
      * Parses a string of rules into a list of Ruling objects.
      *
+     * @param field The name of the field to parse.
      * @param rules The string of rules to parse.
-     * @returns A list of Ruling objects.
+     * @returns A list of validation errors.
      */
-    parseFieldRules(field: string, rules: string): Ruling[] {
-        const parsedRules: Ruling[] = [];
+    parseFieldRules(field: string, rules: string): ParsedRule[] {
+        const parsedRules: ParsedRule[] = [];
 
-        if (typeof rules === "string") {
-            const ruleList = rules.split("|");
-            for (const rule of ruleList) {
-                const ruleParts = rule.split(":");
-                if (ruleParts.length !== 2) {
-                    throw new Error(`Invalid rule: ${rule}`);
+        if (typeof field !== "string") {
+            throw new Error("Field must be a string");
+        }
+
+        if (typeof rules !== "string") {
+            throw new Error("Rules must be a string");
+        }
+
+        const ruleList = rules.split("|");
+        for (const rule of ruleList) {
+            const trimmedRule = rule.trim();
+            if (trimmedRule === "") {
+                continue;
+            }
+
+            // find the rule parser that matches the rule
+            for (const ruleParser of this.ruleParsers) {
+                if (trimmedRule.startsWith(ruleParser.ruleName())) {
+                    const parsedOperands = ruleParser.parseRule(rule);
+                    parsedRules.push({
+                        rule: ruleParser.ruleName(),
+                        operands: { attribute: field, ...parsedOperands },
+                    });
+                    break;
                 }
-                const ruleName = ruleParts[0];
-                const ruleOperands = ruleParts[1].split(",");
-                const ruleValidator = this.rules.find((r) => r.ruleName() === ruleName);
-                if (!ruleValidator) {
-                    throw new Error(`Invalid rule: ${rule}`);
-                    return [];
-                }
-                parsedRules.push(ruleValidator);
             }
         }
 
-        return [];
+        return parsedRules;
     }
 }
