@@ -1,4 +1,4 @@
-import { Validates } from "../mod.ts";
+import {Haystack, Operands, Validates} from "../mod.ts";
 
 /**
  * Validates that a value maybe null.
@@ -10,9 +10,10 @@ export class Nullable implements Validates {
      * @param operands The operands to the rule.
      * @returns A string containing the error message if the value is invalid, false if the value is valid but validation should discontinue, or undefined if the value is valid.
      */
-    validate(haystack: Record<string, any>,  operands: Record<string, any>): string | false | undefined {
-        const needle = operands['attribute'];
-        if (haystack.hasOwnProperty(needle) && haystack[needle] !== null) {
+    validate(haystack: Haystack,  operands: Operands): string | false | undefined {
+        const needle = operands['attribute'] as string;
+        const value = haystack[needle];
+        if ((needle in haystack) && value !== null) {
             return undefined;
         }
 

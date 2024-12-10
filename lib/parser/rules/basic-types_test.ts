@@ -13,8 +13,8 @@ import {
 
 Deno.test("basic-types parser: array parse rule", () => {
     const arrayType = new ArrayType();
-    let actual = arrayType.parseRule('array');
-    let expected = {};
+    const actual = arrayType.parseRule('array');
+    const expected = {};
     assertEquals(actual, expected);
 
     assertThrows(() => {

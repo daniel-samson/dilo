@@ -1,12 +1,13 @@
 import { Ruling } from "../../interfaces/ruling.ts";
 import {parseOperands} from "./common.ts";
+import {Operands} from "../../types.ts";
 
 export class ArrayType implements Ruling {
     ruleName(): string {
         return "array";
     }
 
-    parseRule(rule: string): Record<string, any> {
+    parseRule(rule: string): Operands {
         if (rule === "array") {
             return {};
         }
@@ -20,7 +21,7 @@ export class ObjectType implements Ruling {
         return "object";
     }
 
-    parseRule(rule: string): Record<string, any> {
+    parseRule(rule: string): Operands {
         if (rule.startsWith("object:")) {
             const keys = parseOperands(rule);
             return { keys };
@@ -39,7 +40,7 @@ export class BooleanType implements Ruling {
         return "boolean";
     }
 
-    parseRule(rule: string): Record<string, any> {
+    parseRule(rule: string): Operands {
         if (rule === "boolean") {
             return {};
         }
@@ -53,7 +54,7 @@ export class DateType implements Ruling {
         return "date";
     }
 
-    parseRule(rule: string): Record<string, any> {
+    parseRule(rule: string): Operands {
         if (rule === "date") {
             return {};
         }
@@ -67,7 +68,7 @@ export class DecimalType implements Ruling {
         return "decimal";
     }
 
-    parseRule(rule: string): Record<string, any> {
+    parseRule(rule: string): Operands {
         if (rule.startsWith("decimal:")) {
             const places = parseOperands(rule);
 
@@ -97,7 +98,7 @@ export class IntegerType implements Ruling {
         return "integer";
     }
 
-    parseRule(rule: string): Record<string, any> {
+    parseRule(rule: string): Operands {
         if (rule === "integer") {
             return {};
         }
@@ -111,7 +112,7 @@ export class JsonType implements Ruling {
         return "json";
     }
 
-    parseRule(rule: string): Record<string, any> {
+    parseRule(rule: string): Operands {
         if (rule === "json") {
             return {};
         }
@@ -125,7 +126,7 @@ export class NumericType implements Ruling {
         return "numeric";
     }
 
-    parseRule(rule: string): Record<string, any> {
+    parseRule(rule: string): Operands {
         if (rule === "numeric") {
             return {};
         }
@@ -139,7 +140,7 @@ export class StringType implements Ruling {
         return "string";
     }
 
-    parseRule(rule: string): Record<string, any> {
+    parseRule(rule: string): Operands {
         if (rule === "string") {
             return {};
         }

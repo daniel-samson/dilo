@@ -1,4 +1,5 @@
 import { Validates } from "../interfaces/validates.ts";
+import {Haystack, Operands} from "../types.ts";
 
 /**
  * Validates that a value is an array.
@@ -11,9 +12,10 @@ export class ArrayType implements Validates {
      * @param operands The operands to the rule.
      * @returns A string containing the error message if the value is invalid, or undefined if the value is valid.
      */
-    validate(haystack: Record<string, any>,  operands: Record<string, any>): string | undefined {
-        const needle = operands['attribute'];
-        if (Array.isArray(haystack[needle])) {
+    validate(haystack: Haystack,  operands: Operands): string | undefined {
+        const needle = operands['attribute'] as string;
+        const value = haystack[needle];
+        if (Array.isArray(value)) {
             return undefined;
         }
 
@@ -32,11 +34,12 @@ export class ObjectType implements Validates {
      * @param operands The operands to the rule.
      * @returns A string containing the error message if the value is invalid, or undefined if the value is valid.
      */
-    validate(haystack: Record<string, any>,  operands: Record<string, any>): string | undefined {
-        const needle = operands['attribute'];
-        if (haystack[needle] !== null && typeof haystack[needle] === 'object') {
+    validate(haystack: Haystack,  operands: Operands): string | undefined {
+        const needle = operands['attribute'] as string;
+        const value = haystack[needle];
+        if (value !== null && typeof value === 'object') {
             if (operands['keys']) {
-                const keys = operands['keys'];
+                const keys = operands['keys'] as string[];
                 for (const key of keys) {
                     if (!Object.prototype.hasOwnProperty.call(haystack[needle], key)) {
                         return `${needle}.object`;
@@ -63,9 +66,10 @@ export class BooleanType implements Validates {
      * @param operands The operands to the rule.
      * @returns A string containing the error message if the value is invalid, or undefined if the value is valid.
      */
-    validate(haystack: Record<string, any>, operands: Record<string, any>): string | undefined {
-        const needle = operands['attribute'];
-        if ([false, "false", true, "true", 0, 1, "0", "1"].includes(haystack[needle])) {
+    validate(haystack: Haystack,  operands: Operands): string | undefined {
+        const needle = operands['attribute'] as string;
+        const value = haystack[needle];
+        if ([false, "false", true, "true", 0, 1, "0", "1"].includes(value as string | number | boolean)) {
             return undefined;
         }
 
@@ -84,14 +88,15 @@ export class DateType implements Validates {
      * @param operands The operands to the rule.
      * @returns A string containing the error message if the value is invalid, or undefined if the value is valid.
      */
-    validate(haystack: Record<string, any>,  operands: Record<string, any>): string | undefined {
-        const needle = operands['attribute'];
-        if (haystack[needle] instanceof Date) {
+    validate(haystack: Haystack,  operands: Operands): string | undefined {
+        const needle = operands['attribute'] as string;
+        const value = haystack[needle];
+        if (value instanceof Date) {
             return undefined;
         }
 
         try {
-            const date = new Date(haystack[needle]);
+            const date = new Date(value as string | number | Date);
             if (date.toString() !== "Invalid Date") {
                 return undefined;
             }
@@ -111,8 +116,8 @@ export class DecimalType implements Validates {
      * @param operands The operands to the rule.
      * @returns A string containing the error message if the value is invalid, or undefined if the value is valid.
      */
-    validate(haystack: Record<string, any>,  operands: Record<string, any>): string | undefined {
-        const needle = operands['attribute'];
+    validate(haystack: Haystack,  operands: Operands): string | undefined {
+        const needle = operands['attribute'] as string;
         const value = String(haystack[needle]);
         let regex = /^$/;
         const placesFrom = operands['placesFrom'];
@@ -143,9 +148,10 @@ export class IntegerType implements Validates {
      * @param operands The operands to the rule.
      * @returns A string containing the error message if the value is invalid, or undefined if the value is valid.
      */
-    validate(haystack: Record<string, any>,  operands: Record<string, any>): string | undefined {
-        const needle = operands['attribute'];
-        if (haystack[needle] !== undefined && Number.isInteger(haystack[needle])) {
+    validate(haystack: Haystack,  operands: Operands): string | undefined {
+        const needle = operands['attribute'] as string;
+        const value = haystack[needle];
+        if (value !== undefined && Number.isInteger(value)) {
             return undefined;
         }
 
@@ -161,10 +167,11 @@ export class JsonType implements Validates {
      * @param operands The operands to the rule.
      * @returns A string containing the error message if the value is invalid, or undefined if the value is valid.
      */
-    validate(haystack: Record<string, any>,  operands: Record<string, any>): string | undefined {
-        const needle = operands['attribute'];
+    validate(haystack: Haystack,  operands: Operands): string | undefined {
+        const needle = operands['attribute'] as string;
+        const value = haystack[needle];
         try {
-            JSON.parse(haystack[needle]);
+            JSON.parse(value as string);
             return undefined;
         } catch (_) {
             return `${needle}.json`;
@@ -180,9 +187,10 @@ export class NumericType implements Validates {
      * @param operands The operands to the rule.
      * @returns A string containing the error message if the value is invalid, or undefined if the value is valid.
      */
-    validate(haystack: Record<string, any>,  operands: Record<string, any>): string | undefined {
-        const needle = operands['attribute'];
-        if (haystack[needle] !== null && Number.isFinite(haystack[needle])) {
+    validate(haystack: Haystack,  operands: Operands): string | undefined {
+        const needle = operands['attribute'] as string;
+        const value = haystack[needle];
+        if (value !== null && Number.isFinite(value)) {
             return undefined;
         }
 
@@ -198,9 +206,10 @@ export class StringType implements Validates {
      * @param operands The operands to the rule.
      * @returns A string containing the error message if the value is invalid, or undefined if the value is valid.
      */
-    validate(haystack: Record<string, any>,  operands: Record<string, any>): string | undefined {
-        const needle = operands['attribute'];
-        if (typeof haystack[needle] === 'string') {
+    validate(haystack: Haystack,  operands: Operands): string | undefined {
+        const needle = operands['attribute'] as string;
+        const value = haystack[needle];
+        if (typeof value === 'string') {
             return undefined;
         }
 

@@ -1,3 +1,5 @@
+import {Operands} from "../types.ts";
+
 export interface Translator {
     /**
      * Translates an error code into a user-friendly error message by using the provided operands for dynamic message interpolation.
@@ -6,5 +8,5 @@ export interface Translator {
      * @param {Record<string, any>} operands - A key-value mapping used to populate placeholders in the error message.
      * @return {string} The translated and formatted error message.
      */
-    translate(errorCode: string, operands: Record<string, any>): string
+    translate(errorCode: string, operands: Operands): string
 }

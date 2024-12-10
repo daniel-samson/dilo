@@ -1,3 +1,5 @@
+import {Operands} from "../types.ts";
+
 /**
  * A rule is a single validation rule that can be applied to a field.
  */
@@ -7,10 +9,10 @@ export interface Ruling {
      */
     ruleName(): string;
 
-    parseRule(rule: string): Record<string, any>;
+    parseRule(rule: string): Operands;
 }
 
 export interface ParsedRule {
     rule: string;
-    operands: Record<string, any>;
+    operands: Operands;
 }

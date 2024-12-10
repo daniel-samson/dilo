@@ -277,14 +277,14 @@ Deno.test("basic-types: is not numeric", () => {
 
 Deno.test("basic-types: is string", () => {
     const stringType = new StringType();
-    let actual = stringType.validate({"foo": "bar"}, {attribute: 'foo'});
+    const actual = stringType.validate({"foo": "bar"}, {attribute: 'foo'});
     const expected = undefined;
     assertEquals(actual, expected);
 });
 
 Deno.test("basic-types: is not string", () => {
     const stringType = new StringType();
-    let actual = stringType.validate({"foo": 1}, {attribute: 'foo'});
+    const actual = stringType.validate({"foo": 1}, {attribute: 'foo'});
     const expected = "foo.string";
     assertEquals(actual, expected);
 });

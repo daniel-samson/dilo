@@ -36,7 +36,9 @@ export class Dilo {
      * @param object The object to validate.
      * @returns A record of field names and error messages if the object is invalid, or undefined if the object is valid.
      */
+    // deno-lint-ignore no-explicit-any
     validate(object: Record<string, any>): Record<string, Record<string, any>|undefined> | undefined {
+        // deno-lint-ignore no-explicit-any
         const validation: Record<string, Record<string, any>|undefined> = {};
 
         const fields = Object.keys(this.rules);
@@ -61,6 +63,7 @@ export class Dilo {
      * @param object The object to validate.
      * @returns A ValidatesError if the object is invalid, or undefined if the object is valid.
      */
+    // deno-lint-ignore no-explicit-any
     validateField(field: string, object: Record<string, any>): ValidatesError | undefined {
         const fieldParsingRules = this.parsedRules[field];
         for (const parsedRule of fieldParsingRules) {
