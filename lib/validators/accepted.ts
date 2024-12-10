@@ -1,4 +1,4 @@
-import {Operands, Validates, Value} from "../mod.ts";
+import type {Operands, Validates, Value} from "../mod.ts";
 
 /**
  * Validates that a value is either "yes", "on", 1, "1", true, or "true".

@@ -1,5 +1,5 @@
-import { Ruling } from "../../interfaces/ruling.ts";
-import {Operands} from "../../types.ts";
+import type { Ruling } from "../../interfaces/ruling.ts";
+import type {Operands} from "../../types.ts";
 
 export class Accepted implements Ruling {
     ruleName(): string {

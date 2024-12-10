@@ -1,4 +1,4 @@
-import {Operands} from "../types.ts";
+import type {Operands} from "../types.ts";
 
 export interface Translator {
     /**

@@ -1,6 +1,6 @@
-import { Ruling } from "../../interfaces/ruling.ts";
+import type { Ruling } from "../../interfaces/ruling.ts";
 import {parseOperands} from "./common.ts";
-import {Operands} from "../../types.ts";
+import type {Operands} from "../../types.ts";
 
 export class ArrayType implements Ruling {
     ruleName(): string {

@@ -1,5 +1,5 @@
-import { Validates } from "../interfaces/validates.ts";
-import {Haystack, Operands} from "../types.ts";
+import type { Validates } from "../interfaces/validates.ts";
+import type {Haystack, Operands} from "../types.ts";
 
 /**
  * Validates that a value is an array.

@@ -1,5 +1,5 @@
-import {ParsedRule, Ruling} from "../interfaces/ruling.ts";
-import { RuleParserInterface } from "../mod.ts";
+import type {ParsedRule, Ruling} from "../interfaces/ruling.ts";
+import type { RuleParserInterface } from "../mod.ts";
 
 export class RuleParser implements RuleParserInterface {
     constructor(private ruleParsers: Ruling[] = []) {}

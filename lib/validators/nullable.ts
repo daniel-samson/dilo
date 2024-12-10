@@ -1,4 +1,4 @@
-import {Haystack, Operands, Validates} from "../mod.ts";
+import type {Haystack, Operands, Validates} from "../mod.ts";
 
 /**
  * Validates that a value maybe null.

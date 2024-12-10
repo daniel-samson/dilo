@@ -1,4 +1,4 @@
-import {Operands} from "../types.ts";
+import type {Operands} from "../types.ts";
 
 /**
  * A rule is a single validation rule that can be applied to a field.

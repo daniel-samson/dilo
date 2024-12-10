@@ -1,4 +1,4 @@
-import {Ruling} from "../../interfaces/ruling.ts";
+import type {Ruling} from "../../interfaces/ruling.ts";
 import {
     Accepted,
     ArrayType,

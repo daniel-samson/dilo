@@ -12,7 +12,7 @@ import {
 import { Nullable } from "./nullable.ts";
 import { Required } from "./required.ts";
 import { Sometimes } from "./sometimes.ts";
-import {Validates} from "../interfaces/validates.ts";
+import type {Validates} from "../interfaces/validates.ts";
 
 const BuiltInValidators: Record<string, Validates> = {
     "required": new Required(),

@@ -1,6 +1,6 @@
-import {RuleParserInterface} from "./interfaces/rule-parser-interface.ts";
-import {ParsedRule} from "./interfaces/ruling.ts";
-import {Validates, ValidatesError} from "./mod.ts";
+import type {RuleParserInterface} from "./interfaces/rule-parser-interface.ts";
+import type {ParsedRule} from "./interfaces/ruling.ts";
+import type {Validates, ValidatesError} from "./mod.ts";
 import { BuiltInParsingRules } from "./parser/mod.ts";
 import { RuleParser } from "./parser/rule-parser.ts";
 import BuiltInValidators from "./validators/mod.ts";

@@ -1,4 +1,4 @@
-import { Operands, Value } from "../types.ts";
+import type { Operands, Value } from "../types.ts";
 
 /**
  * Validates a value against a rule.

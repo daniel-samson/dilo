@@ -1,4 +1,4 @@
-import {ParsedRule, Ruling} from "./ruling.ts";
+import type {ParsedRule, Ruling} from "./ruling.ts";
 
 export interface RuleParserInterface {
     registerRules(rules: Ruling[]): void

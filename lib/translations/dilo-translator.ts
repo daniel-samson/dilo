@@ -1,5 +1,5 @@
-import { Translator } from "../interfaces/mod.ts";
-import {Operands} from "../types.ts";
+import type { Translator } from "../interfaces/mod.ts";
+import type {Operands} from "../types.ts";
 
 export class DiloTranslator implements Translator {
     constructor(private readonly locale: string, private readonly translations: Record<string, Record<string, string>>) {}
