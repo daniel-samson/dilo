@@ -29,8 +29,8 @@ const dilo = Dilo.make(rules);
 const errors = dilo.validate({ foo: 1, bar: "bar", baz: true });
 
 if (errors) {
-  for (const error of Object.keys(errors)) {
-    console.log(field, errors[error]?.errorCode, errors[error]?.operands);
+  for (const field of Object.keys(errors)) {
+    console.log(field, errors[field]);
   }
 }
 ```
