@@ -1,8 +1,9 @@
 import type {RuleParserInterface} from "./interfaces/rule-parser-interface.ts";
 import type {ParsedRule} from "./interfaces/ruling.ts";
 import type {Validates, ValidatesError} from "./mod.ts";
-import { BuiltInParsingRules } from "./parser/mod.ts";
-import { RuleParser } from "./parser/rule-parser.ts";
+import {BuiltInTranslations, DiloTranslator} from "./mod.ts";
+import {BuiltInParsingRules} from "./parser/mod.ts";
+import {RuleParser} from "./parser/rule-parser.ts";
 import BuiltInValidators from "./validators/mod.ts";
 
 /**
@@ -14,7 +15,8 @@ export class Dilo {
     private rules: Record<string, string> = {};
     private parsedRules: Record<string, ParsedRule[]> = {};
     private validators: Record<string, Validates> = {};
-    constructor(rules: Record<string, string>, ruleParser: RuleParserInterface, validators: Record<string, Validates>) {
+    private translator: DiloTranslator = new DiloTranslator('en-us', BuiltInTranslations);
+    constructor(rules: Record<string, string>, ruleParser: RuleParserInterface, validators: Record<string, Validates>, translator: DiloTranslator|undefined) {
         const fields = Object.keys(rules);
         if (fields.length === 0) {
             throw new Error("No rules have been registered");
@@ -29,6 +31,9 @@ export class Dilo {
         }
         this.validators = validators;
         this.rules = rules;
+        if (translator !== undefined) {
+            this.translator = translator;
+        }
     }
 
     /**
@@ -37,16 +42,26 @@ export class Dilo {
      * @returns A record of field names and error messages if the object is invalid, or undefined if the object is valid.
      */
     // deno-lint-ignore no-explicit-any
-    validate(object: Record<string, any>): Record<string, Record<string, any>|undefined> | undefined {
+    validate(object: Record<string, any>): Record<string, string[]|undefined> | undefined {
         // deno-lint-ignore no-explicit-any
-        const validation: Record<string, Record<string, any>|undefined> = {};
+        const validation: Record<string, string[]|undefined> = {};
 
         const fields = Object.keys(this.rules);
         for (const field of fields){
             const fieldValidation = this.validateField(field, object);
 
             if (fieldValidation !== undefined) {
-                validation[fieldValidation.errorCode] = fieldValidation.operands;
+                const fieldName = this.extractFieldName(fieldValidation.errorCode);
+                if (fieldName in validation) {
+                    if (validation[fieldName] === undefined) {
+                        validation[fieldName] = [];
+                    }
+
+                    validation[fieldName].push(fieldValidation.translation);
+                } else {
+                    validation[fieldName] = [];
+                    validation[fieldName].push(fieldValidation.translation);
+                }
             } // else its undefined, so we can ignore it
         }
 
@@ -64,7 +79,7 @@ export class Dilo {
      * @returns A ValidatesError if the object is invalid, or undefined if the object is valid.
      */
     // deno-lint-ignore no-explicit-any
-    validateField(field: string, object: Record<string, any>): ValidatesError | undefined {
+    private validateField(field: string, object: Record<string, any>): ValidatesError | undefined {
         const fieldParsingRules = this.parsedRules[field];
         for (const parsedRule of fieldParsingRules) {
             const key = parsedRule.rule;
@@ -78,6 +93,7 @@ export class Dilo {
                 return {
                     errorCode: valid,
                     operands: parsedRule.operands,
+                    translation: this.translator.translate(valid, parsedRule.operands),
                 };
             }
         }
@@ -93,6 +109,18 @@ export class Dilo {
      */
     static make(rules: Record<string, string>): Dilo {
         const ruleParser = new RuleParser(BuiltInParsingRules);
-        return new Dilo(rules, ruleParser, BuiltInValidators);
+        const translator = new DiloTranslator('en_us', BuiltInTranslations);
+        return new Dilo(rules, ruleParser, BuiltInValidators, translator);
+    }
+
+    /**
+     * Extracts the field name from an error code.
+     * @param errorCode The error code to extract the field name from.
+     * @returns The field name.
+     */
+    private extractFieldName(errorCode: string): string {
+        const split = errorCode.split(".");
+        split.pop();
+        return split.join(".");
     }
 }

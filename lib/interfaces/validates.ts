@@ -16,5 +16,6 @@ export interface Validates {
 
 export interface ValidatesError {
     errorCode: string,
-    operands: Operands
+    operands: Operands,
+    translation: string,
 }
