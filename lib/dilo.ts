@@ -43,7 +43,6 @@ export class Dilo {
      */
     // deno-lint-ignore no-explicit-any
     validate(object: Record<string, any>): Record<string, string[]|undefined> | undefined {
-        // deno-lint-ignore no-explicit-any
         const validation: Record<string, string[]|undefined> = {};
 
         const fields = Object.keys(this.rules);
