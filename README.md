@@ -8,16 +8,11 @@ This project is currently in development.
 
 [![Deno](https://github.com/daniel-samson/dilo/actions/workflows/deno.yml/badge.svg)](https://github.com/daniel-samson/dilo/actions/workflows/deno.yml)
 
-## Installation
-
-```sh
-deno install -A https://deno.land/x/dilo@v0.0.1
-```
 
 ## Usage
 
 ```ts
-import { Dilo } from "https://deno.land/x/dilo@v0.0.1/mod.ts";
+import * as Dilo from "@danielsamson/dilo";
 
 const rules = {
   foo: "required|numeric",
