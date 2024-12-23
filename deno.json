@@ -1,7 +1,7 @@
 {
-  "name": "@dilo/validation",
+  "name": "@danielsamson/dilo",
   "description": "A validation library for Deno",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "repository": "https://github.com/daniel-samson/dilo",
   "license": "MIT",
   "tasks": {
