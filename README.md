@@ -12,7 +12,7 @@ This project is currently in development.
 ## Usage
 
 ```ts
-import * as Dilo from "@danielsamson/dilo";
+import { Dilo } from "@danielsamson/dilo";
 
 const rules = {
   foo: "required|numeric",
@@ -20,12 +20,17 @@ const rules = {
   baz: "nullable|boolean",
 };
 
-const dilo = Dilo.make(rules);
-const errors = dilo.validate({ foo: 1, bar: "bar", baz: true });
+const request = Dilo.make(rules);
+const errors = request.validate({ foo: "1", bar: "bar", baz: true });
 
 if (errors) {
   for (const field of Object.keys(errors)) {
     console.log(field, errors[field]);
   }
 }
+```
+
+Output:
+```shell
+foo [ "foo must be a numeric value" ]
 ```
