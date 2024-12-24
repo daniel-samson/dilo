@@ -13,9 +13,11 @@ import {
     ObjectType,
     Required,
     Sometimes,
-    StringType
+    StringType,
+    Size,
 } from "../mod.ts";
 
+export * from "./size.ts";
 export * from "./required.ts";
 export * from "./basic-types.ts";
 export * from "./accepted.ts";
@@ -37,4 +39,5 @@ export const BuiltInParsingRules: Ruling[] = [
     new Accepted(),
     new Declined(),
     new Nullable(),
+    new Size(),
 ];

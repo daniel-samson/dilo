@@ -13,6 +13,7 @@ import { Nullable } from "./nullable.ts";
 import { Required } from "./required.ts";
 import { Sometimes } from "./sometimes.ts";
 import type {Validates} from "../interfaces/validates.ts";
+import {Size} from "./size.ts";
 
 const BuiltInValidators: Record<string, Validates> = {
     "required": new Required(),
@@ -28,6 +29,7 @@ const BuiltInValidators: Record<string, Validates> = {
     "accepted": new Accepted(),
     "declined": new Declined(),
     "sometimes": new Sometimes(),
+    "size": new Size(),
 };
 
 export default BuiltInValidators;
