@@ -29,7 +29,7 @@ Deno.test("contains: is not present as array", () => {
 
 Deno.test("contains: is present as string", () => {
   const contains = new Contains();
-  let actual = contains.validate({ foo: "bar" }, { attribute: "foo", values: ["bar"] });
+  let actual = contains.validate({ foo: "bar" }, { attribute: "foo", values: ["ar", "b"] });
   const expected = undefined;
   assertEquals(actual, expected);
 

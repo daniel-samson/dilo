@@ -28,8 +28,10 @@ export class Contains implements Validates {
     if (values !== null && typeof values === "string") {
       if (operands["values"] !== undefined) {
         const keys = operands["values"] as [string];
-        if (!keys.includes(values as string)) {
-          return `${needle}.contains`;
+        for (const key of keys) {
+          if (!values.includes(key)) {
+            return `${needle}.contains`;
+          }
         }
 
         return undefined;
