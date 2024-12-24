@@ -27,6 +27,7 @@ export const en_us_translations = {
     "between.file": ":attribute must be between :min - :max kilobytes",
     "between.numeric": ":attribute must be between :min - :max",
     "between.string": ":attribute must be between :min - :max characters",
+    "contains": ":attribute must contain :values",
     "boolean": ":attribute must be a valid boolean value",
     "date": ":attribute must be a valid date",
     "date_format": ":attribute must be a valid date format",

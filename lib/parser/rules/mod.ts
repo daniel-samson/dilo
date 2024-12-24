@@ -15,6 +15,7 @@ import {
     Sometimes,
     StringType,
     Size,
+    Contains,
 } from "../mod.ts";
 
 export * from "./size.ts";
@@ -23,6 +24,7 @@ export * from "./basic-types.ts";
 export * from "./accepted.ts";
 export * from "./sometimes.ts";
 export * from "./nullable.ts";
+export * from "./contains.ts";
 
 export const BuiltInParsingRules: Ruling[] = [
     new Required(),
@@ -40,4 +42,5 @@ export const BuiltInParsingRules: Ruling[] = [
     new Declined(),
     new Nullable(),
     new Size(),
+    new Contains(),
 ];
