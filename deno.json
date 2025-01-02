@@ -6,7 +6,9 @@
   "license": "MIT",
   "tasks": {
     "fmt-check": "deno fmt --check mod.ts lib/**/*.ts",
-    "fmt": "deno fmt mod.ts lib/**/*.ts"
+    "fmt": "deno fmt mod.ts lib/**/*.ts",
+    "lcov": "rm -fr coverage && deno test --coverage && deno coverage --lcov --output=cov.lcov",
+    "coverage": "rm -fr coverage && deno test --coverage && deno coverage --lcov --output=cov.lcov && deno coverage --html"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1"
