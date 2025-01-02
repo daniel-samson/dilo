@@ -39,8 +39,8 @@ foo [ "foo must be a numeric value" ]
 
 - [v0.1.0](https://github.com/daniel-samson/dilo/issues/1)
 - [v0.2.0](https://github.com/daniel-samson/dilo/issues/2) - currently in development
-- [v0.3.0](https://github.com/daniel-samson/dilo/issues/3) - in planning
-- [v0.4.0](https://github.com/daniel-samson/dilo/issues/4) - in planning
+- [v0.3.0](https://github.com/daniel-samson/dilo/issues/4) - in planning
+- [v0.4.0](https://github.com/daniel-samson/dilo/issues/5) - in planning
 
 ## Contributing
 
