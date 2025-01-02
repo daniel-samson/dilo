@@ -34,3 +34,13 @@ Output:
 ```shell
 foo [ "foo must be a numeric value" ]
 ```
+
+## Contributing
+
+### Setting up Git Hooks
+
+After cloning the repository, run the following command to set up Git hooks:
+
+```bash
+./setup-hooks.sh
+```
