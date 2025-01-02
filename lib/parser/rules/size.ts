@@ -1,4 +1,4 @@
-import { Operands, Ruling } from "../../mod.ts";
+import type { Operands, Ruling } from "../../mod.ts";
 
 export class Size implements Ruling {
   ruleName(): string {
