@@ -7,10 +7,16 @@ Deno.test("size: is array", () => {
   const expected = undefined;
   assertEquals(actual, expected);
 
-  actual = size.validate({ foo: ["bar", "baz"] }, { attribute: "foo", size: 2 });
+  actual = size.validate({ foo: ["bar", "baz"] }, {
+    attribute: "foo",
+    size: 2,
+  });
   assertEquals(actual, undefined);
 
-  actual = size.validate({ foo: ["bar", "baz", "qux"] }, { attribute: "foo", size: 2 });
+  actual = size.validate({ foo: ["bar", "baz", "qux"] }, {
+    attribute: "foo",
+    size: 2,
+  });
   assertEquals(actual, "foo.size");
 });
 

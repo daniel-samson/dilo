@@ -1,5 +1,5 @@
-import type {Validates} from "../interfaces/validates.ts";
-import type {Haystack, Operands} from "../types.ts";
+import type { Validates } from "../interfaces/validates.ts";
+import type { Haystack, Operands } from "../types.ts";
 
 export class Size implements Validates {
   /**

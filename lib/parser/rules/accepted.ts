@@ -1,30 +1,30 @@
 import type { Ruling } from "../../interfaces/ruling.ts";
-import type {Operands} from "../../types.ts";
+import type { Operands } from "../../types.ts";
 
 export class Accepted implements Ruling {
-    ruleName(): string {
-        return "accepted";
+  ruleName(): string {
+    return "accepted";
+  }
+
+  parseRule(rule: string): Operands {
+    if (rule.includes(":")) {
+      throw new Error('Invalid rule: "accepted" does not accept operands');
     }
 
-    parseRule(rule: string): Operands {
-        if (rule.includes(":")) {
-            throw new Error("Invalid rule: \"accepted\" does not accept operands");
-        }
-
-        return {};
-    }
+    return {};
+  }
 }
 
 export class Declined implements Ruling {
-    ruleName(): string {
-        return "declined";
+  ruleName(): string {
+    return "declined";
+  }
+
+  parseRule(rule: string): Operands {
+    if (rule.includes(":")) {
+      throw new Error('Invalid rule: "declined" does not accept operands');
     }
 
-    parseRule(rule: string): Operands {
-        if (rule.includes(":")) {
-            throw new Error("Invalid rule: \"declined\" does not accept operands");
-        }
-
-        return {};
-    }
+    return {};
+  }
 }

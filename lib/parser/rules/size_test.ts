@@ -11,11 +11,19 @@ Deno.test("size: parse rule", () => {
 
 Deno.test("size: parse rule with operands", () => {
   const size = new Size();
-  assertThrows(() => {
-    size.parseRule("size:");
-  }, Error, "Invalid rule: \"size\" requires 1 operand eg. size:10");
+  assertThrows(
+    () => {
+      size.parseRule("size:");
+    },
+    Error,
+    'Invalid rule: "size" requires 1 operand eg. size:10',
+  );
 
-    assertThrows(() => {
-        size.parseRule("size");
-    }, Error, "Invalid rule: \"size\" requires 1 operand eg. size:10");
+  assertThrows(
+    () => {
+      size.parseRule("size");
+    },
+    Error,
+    'Invalid rule: "size" requires 1 operand eg. size:10',
+  );
 });

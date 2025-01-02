@@ -1,4 +1,4 @@
-import type {Haystack, Operands, Validates} from "../mod.ts";
+import type { Haystack, Operands, Validates } from "../mod.ts";
 
 export class Contains implements Validates {
   /**
@@ -10,7 +10,7 @@ export class Contains implements Validates {
    */
   validate(haystack: Haystack, operands: Operands): string | undefined {
     const needle = operands["attribute"] as string;
-    const values = haystack[needle] as [string | number | boolean]|string;
+    const values = haystack[needle] as [string | number | boolean] | string;
     if (values !== null && Array.isArray(values)) {
       if (operands["values"] !== undefined) {
         const keys = operands["values"] as [string | number | boolean];
