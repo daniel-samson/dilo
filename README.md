@@ -10,6 +10,7 @@ This project is currently in development.
 [![codecov](https://codecov.io/gh/daniel-samson/dilo/graph/badge.svg?token=tIzOnJXw1G)](https://codecov.io/gh/daniel-samson/dilo)
 
 ### v0.2.x
+[![Deno](https://github.com/daniel-samson/dilo/actions/workflows/deno.yml/badge.svg?branch=epic%2F0.2.x)](https://github.com/daniel-samson/dilo/actions/workflows/deno.yml)
 [![codecov](https://codecov.io/gh/daniel-samson/dilo/branch/epic%2F0.2.x/graph/badge.svg?token=tIzOnJXw1G)](https://codecov.io/gh/daniel-samson/dilo)
 
 ## Usage
