@@ -15,6 +15,7 @@ import { Sometimes } from "./sometimes.ts";
 import type {Validates} from "../interfaces/validates.ts";
 import {Size} from "./size.ts";
 import { Contains } from "./contains.ts";
+import {Digits} from "./digits.ts";
 
 const BuiltInValidators: Record<string, Validates> = {
     "required": new Required(),
@@ -22,6 +23,7 @@ const BuiltInValidators: Record<string, Validates> = {
     "boolean": new BooleanType(),
     "date": new DateType(),
     "decimal": new DecimalType(),
+    "digits": new Digits(),
     "integer": new IntegerType(),
     "nullable": new Nullable(),
     "numeric": new NumericType(),
