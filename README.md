@@ -35,6 +35,13 @@ Output:
 foo [ "foo must be a numeric value" ]
 ```
 
+## Documentation
+
+- [v0.1.0](https://github.com/daniel-samson/dilo/issues/1)
+- [v0.2.0](https://github.com/daniel-samson/dilo/issues/2) - currently in development
+- [v0.3.0](https://github.com/daniel-samson/dilo/issues/3) - in planning
+- [v0.4.0](https://github.com/daniel-samson/dilo/issues/4) - in planning
+
 ## Contributing
 
 ### Setting up Git Hooks
