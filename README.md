@@ -7,7 +7,10 @@ A validation library for deno.  The name is short for "Dilophosaurus".
 This project is currently in development.
 
 [![Deno](https://github.com/daniel-samson/dilo/actions/workflows/deno.yml/badge.svg)](https://github.com/daniel-samson/dilo/actions/workflows/deno.yml)
+[![codecov](https://codecov.io/gh/daniel-samson/dilo/graph/badge.svg?token=tIzOnJXw1G)](https://codecov.io/gh/daniel-samson/dilo)
 
+### v0.2.x
+[![codecov](https://codecov.io/gh/daniel-samson/dilo/branch/epic%2F0.2.x/graph/badge.svg?token=tIzOnJXw1G)](https://codecov.io/gh/daniel-samson/dilo)
 
 ## Usage
 
