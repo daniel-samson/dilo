@@ -34,6 +34,7 @@ import {
   LessThanOrEqual,
   NotIn,
 } from "./basic_compare.ts";
+import { Url } from "./url.ts";
 
 const BuiltInValidators: Record<string, Validates> = {
   "required": new Required(),
@@ -66,6 +67,7 @@ const BuiltInValidators: Record<string, Validates> = {
   "not_in": new NotIn(),
   "uppercase": new Uppercase(),
   "lowercase": new Lowercase(),
+  "url": new Url(),
 };
 
 export default BuiltInValidators;

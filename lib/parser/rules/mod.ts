@@ -35,6 +35,7 @@ import {
 } from "./string.ts";
 import { Email } from "./email.ts";
 import { Filled } from "./filled.ts";
+import { Url } from "./url.ts";
 
 export * from "./size.ts";
 export * from "./required.ts";
@@ -45,6 +46,7 @@ export * from "./nullable.ts";
 export * from "./contains.ts";
 export * from "./digits.ts";
 export * from "./basic_compare.ts";
+export * from "./url.ts";
 
 export const BuiltInParsingRules: Ruling[] = [
   new Required(),
@@ -79,4 +81,5 @@ export const BuiltInParsingRules: Ruling[] = [
   new NotIn(),
   new Uppercase(),
   new Lowercase(),
+  new Url(),
 ];
