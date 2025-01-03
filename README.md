@@ -41,10 +41,10 @@ foo [ "foo must be a numeric value" ]
 
 ## Documentation
 
-- [v0.1.0](https://github.com/daniel-samson/dilo/issues/1)
-- [v0.2.0](https://github.com/daniel-samson/dilo/issues/2) - currently in development
-- [v0.3.0](https://github.com/daniel-samson/dilo/issues/4) - in planning
-- [v0.4.0](https://github.com/daniel-samson/dilo/issues/5) - in planning
+- [version 0.1.x](https://github.com/daniel-samson/dilo/issues/1) (Current version)
+- [version 0.2.x](https://github.com/daniel-samson/dilo/issues/2) - Currently in development
+- [version 0.3.x](https://github.com/daniel-samson/dilo/issues/4) - In planning
+- [v0.4.x](https://github.com/daniel-samson/dilo/issues/5) - In planning
 
 ## Contributing
 
