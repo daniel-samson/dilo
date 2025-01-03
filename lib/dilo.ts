@@ -1,6 +1,6 @@
 import type { RuleParserInterface } from "./interfaces/rule-parser-interface.ts";
 import type { ParsedRule } from "./interfaces/ruling.ts";
-import type { Validates, ValidatesError } from "./mod.ts";
+import type { Validates, ValidatesError, Value } from "./mod.ts";
 import { BuiltInTranslations, DiloTranslator } from "./mod.ts";
 import { BuiltInParsingRules } from "./parser/mod.ts";
 import { RuleParser } from "./parser/rule-parser.ts";
@@ -50,8 +50,7 @@ export class Dilo {
    * @returns A record of field names and error messages if the object is invalid, or undefined if the object is valid.
    */
   validate(
-    // deno-lint-ignore no-explicit-any
-    object: Record<string, any>,
+    object: Record<string, Value>,
   ): Record<string, string[] | undefined> | undefined {
     const validation: Record<string, string[] | undefined> = {};
 
@@ -89,8 +88,7 @@ export class Dilo {
    */
   private validateField(
     field: string,
-    // deno-lint-ignore no-explicit-any
-    object: Record<string, any>,
+    object: Record<string, Value>,
   ): ValidatesError | undefined {
     const fieldParsingRules = this.parsedRules[field];
     for (const parsedRule of fieldParsingRules) {

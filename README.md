@@ -1,6 +1,6 @@
 # dilo
 
-A validation library for deno.  The name is short for "Dilophosaurus".
+A validation library for deno. The name is short for "Dilophosaurus".
 
 ## Project Status
 
@@ -10,6 +10,7 @@ This project is currently in development.
 [![codecov](https://codecov.io/gh/daniel-samson/dilo/graph/badge.svg?token=tIzOnJXw1G)](https://codecov.io/gh/daniel-samson/dilo)
 
 ### v0.2.x
+
 [![Deno](https://github.com/daniel-samson/dilo/actions/workflows/deno.yml/badge.svg?branch=epic%2F0.2.x)](https://github.com/daniel-samson/dilo/actions/workflows/deno.yml)
 [![codecov](https://codecov.io/gh/daniel-samson/dilo/branch/epic%2F0.2.x/graph/badge.svg?token=tIzOnJXw1G)](https://codecov.io/gh/daniel-samson/dilo)
 
@@ -35,14 +36,17 @@ if (errors) {
 ```
 
 Output:
+
 ```shell
 foo [ "foo must be a numeric value" ]
 ```
 
 ## Documentation
 
-- [version 0.1.x](https://github.com/daniel-samson/dilo/issues/1) (Current version)
-- [version 0.2.x](https://github.com/daniel-samson/dilo/issues/2) - Work In Progress
+- [version 0.1.x](https://github.com/daniel-samson/dilo/issues/1) (Current
+  version)
+- [version 0.2.x](https://github.com/daniel-samson/dilo/issues/2) - Work In
+  Progress
 - [version 0.3.x](https://github.com/daniel-samson/dilo/issues/4) - In planning
 - [version 0.4.x](https://github.com/daniel-samson/dilo/issues/5) - In planning
 
