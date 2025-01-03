@@ -3,7 +3,9 @@ import {
   DoesntEndsWith,
   DoesntStartsWith,
   EndsWith,
+  Lowercase,
   StartsWith,
+  Uppercase,
 } from "./string.ts";
 
 Deno.test("starts_with: is present as string", () => {
@@ -116,4 +118,22 @@ Deno.test("doesnt_ends_with: is present as string", () => {
     values: ["bar", "baz"],
   });
   assertEquals(actual, "foo.doesnt_ends_with");
+});
+
+Deno.test("uppercase: is present as string", () => {
+  const uppercase = new Uppercase();
+  let actual = uppercase.validate({ foo: "bar" }, { attribute: "foo" });
+  assertEquals(actual, "foo.uppercase");
+
+  actual = uppercase.validate({ foo: "BAR" }, { attribute: "foo" });
+  assertEquals(actual, undefined);
+});
+
+Deno.test("lowercase: is present as string", () => {
+  const lowercase = new Lowercase();
+  let actual = lowercase.validate({ foo: "bar" }, { attribute: "foo" });
+  assertEquals(actual, undefined);
+
+  actual = lowercase.validate({ foo: "BAR" }, { attribute: "foo" });
+  assertEquals(actual, "foo.lowercase");
 });

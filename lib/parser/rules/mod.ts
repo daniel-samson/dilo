@@ -29,7 +29,9 @@ import {
   DoesntEndsWith,
   DoesntStartsWith,
   EndsWith,
+  Lowercase,
   StartsWith,
+  Uppercase,
 } from "./string.ts";
 import { Email } from "./email.ts";
 import { Filled } from "./filled.ts";
@@ -75,4 +77,6 @@ export const BuiltInParsingRules: Ruling[] = [
   new LessThanOrEqual(),
   new In(),
   new NotIn(),
+  new Uppercase(),
+  new Lowercase(),
 ];

@@ -20,7 +20,9 @@ import {
   DoesntEndsWith,
   DoesntStartsWith,
   EndsWith,
+  Lowercase,
   StartsWith,
+  Uppercase,
 } from "./string.ts";
 import { Email } from "./email.ts";
 import { Filled } from "./filled.ts";
@@ -62,6 +64,8 @@ const BuiltInValidators: Record<string, Validates> = {
   "lte": new LessThanOrEqual(),
   "in": new In(),
   "not_in": new NotIn(),
+  "uppercase": new Uppercase(),
+  "lowercase": new Lowercase(),
 };
 
 export default BuiltInValidators;

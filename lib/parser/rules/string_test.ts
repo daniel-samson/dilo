@@ -3,7 +3,9 @@ import {
   DoesntEndsWith,
   DoesntStartsWith,
   EndsWith,
+  Lowercase,
   StartsWith,
+  Uppercase,
 } from "./string.ts";
 
 Deno.test("Test starts_with", () => {
@@ -79,5 +81,19 @@ Deno.test("Test doesnt_ends_with", () => {
 
   actual = doesntEndsWith.parseRule("doesnt_ends_with:foo,bar");
   expected = { values: ["foo", "bar"] };
+  assertEquals(actual, expected);
+});
+
+Deno.test("Test uppercase", () => {
+  const uppercase = new Uppercase();
+  const actual = uppercase.parseRule("uppercase");
+  const expected = {};
+  assertEquals(actual, expected);
+});
+
+Deno.test("Test lowercase", () => {
+  const lowercase = new Lowercase();
+  const actual = lowercase.parseRule("lowercase");
+  const expected = {};
   assertEquals(actual, expected);
 });

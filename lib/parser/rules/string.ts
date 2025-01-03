@@ -73,3 +73,31 @@ export class DoesntEndsWith implements Ruling {
     throw new Error('Invalid rule: "doesnt_ends_with"');
   }
 }
+
+export class Uppercase implements Ruling {
+  ruleName(): string {
+    return "uppercase";
+  }
+
+  parseRule(rule: string): Operands {
+    if (rule == "uppercase") {
+      return {};
+    }
+
+    throw new Error('Invalid rule: "uppercase"');
+  }
+}
+
+export class Lowercase implements Ruling {
+  ruleName(): string {
+    return "lowercase";
+  }
+
+  parseRule(rule: string): Operands {
+    if (rule == "lowercase") {
+      return {};
+    }
+
+    throw new Error('Invalid rule: "lowercase"');
+  }
+}
