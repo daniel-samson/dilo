@@ -8,6 +8,8 @@ This project is currently in development.
 
 [![Deno](https://github.com/daniel-samson/dilo/actions/workflows/deno.yml/badge.svg)](https://github.com/daniel-samson/dilo/actions/workflows/deno.yml)
 [![codecov](https://codecov.io/gh/daniel-samson/dilo/graph/badge.svg?token=tIzOnJXw1G)](https://codecov.io/gh/daniel-samson/dilo)
+[![JSR](https://jsr.io/badges/@danielsamson/dilo)](https://jsr.io/@danielsamson/dilo)
+[![JSR Score](https://jsr.io/badges/@danielsamson/dilo/score)](https://jsr.io/@danielsamson/dilo>)
 
 ### v0.2.x
 
