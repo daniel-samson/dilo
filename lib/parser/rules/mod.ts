@@ -37,6 +37,7 @@ import {
 import { Email } from "./email.ts";
 import { Filled } from "./filled.ts";
 import { Url } from "./url.ts";
+import { Uuid } from "./uuid.ts";
 
 export * from "./size.ts";
 export * from "./required.ts";
@@ -85,4 +86,5 @@ export const BuiltInParsingRules: Ruling[] = [
   new Lowercase(),
   new Url(),
   new Ulid(),
+  new Uuid(),
 ];

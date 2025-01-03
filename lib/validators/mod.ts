@@ -36,6 +36,7 @@ import {
 } from "./basic_compare.ts";
 import { Url } from "./url.ts";
 import { Ulid } from "./ulid.ts";
+import { Uuid } from "./uuid.ts";
 
 const BuiltInValidators: Record<string, Validates> = {
   "required": new Required(),
@@ -70,6 +71,7 @@ const BuiltInValidators: Record<string, Validates> = {
   "lowercase": new Lowercase(),
   "url": new Url(),
   "ulid": new Ulid(),
+  "uuid": new Uuid(),
 };
 
 export default BuiltInValidators;
