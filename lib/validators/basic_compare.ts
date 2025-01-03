@@ -13,6 +13,34 @@ export class GreaterThan implements Validates {
       return `${needle}.gt`;
     }
 
+    // field nam support
+    if ((operands["value"] as string in haystack)) {
+      const fieldValue = haystack[operands["value"] as string];
+      if (typeof fieldValue !== typeof value) {
+        throw new Error("gt: operand must be of the same type as the value");
+      }
+
+      if (
+        typeof value === "string" &&
+        value.length > (fieldValue as string).length
+      ) {
+        return undefined;
+      }
+
+      if (Number.isFinite(value) && value as number > (fieldValue as number)) {
+        return undefined;
+      }
+
+      if (
+        Array.isArray(value) &&
+        value.length > (fieldValue as Array<Value>).length
+      ) {
+        return undefined;
+      }
+
+      return `${needle}.gt`;
+    }
+
     const compareValue = Number(operands["value"]);
 
     if (Number.isFinite(value) && (value as number) > compareValue) {

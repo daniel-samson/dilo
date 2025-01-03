@@ -7,6 +7,7 @@ import {
   LessThanOrEqual,
   NotIn,
 } from "./basic_compare.ts";
+import { assertThrows } from "@std/assert/throws";
 Deno.test("GreaterThan", () => {
   const greaterThan = new GreaterThan();
   let actual = greaterThan.validate({ foo: 1 }, { attribute: "foo", value: 0 });
@@ -37,6 +38,57 @@ Deno.test("GreaterThan", () => {
 
   actual = greaterThan.validate({ foo: false }, { attribute: "foo", value: 2 });
   assertEquals(actual, "foo.gt");
+});
+
+Deno.test("GreaterThan: field name", () => {
+  const greaterThan = new GreaterThan();
+  let actual = greaterThan.validate({ foo: 3, bar: 2 }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, undefined);
+
+  actual = greaterThan.validate({ foo: 2, bar: 3 }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, "foo.gt");
+
+  actual = greaterThan.validate({ foo: "ab", bar: "a" }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, undefined);
+
+  actual = greaterThan.validate({ foo: "a", bar: "a" }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, "foo.gt");
+
+  actual = greaterThan.validate({ foo: [1, 2], bar: [1] }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, undefined);
+
+  actual = greaterThan.validate({ foo: [1], bar: [1] }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, "foo.gt");
+
+  // exceptions
+  assertThrows(
+    () => {
+      greaterThan.validate({ foo: 3, bar: "2" }, {
+        attribute: "foo",
+        value: "bar",
+      });
+    },
+    Error,
+    "gt: operand must be of the same type as the value",
+  );
 });
 
 Deno.test("GreaterThanOrEqual", () => {
