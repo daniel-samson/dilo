@@ -19,7 +19,12 @@ import {
   Sometimes,
   StringType,
 } from "../mod.ts";
-import { EndsWith, StartsWith } from "./string.ts";
+import {
+  DoesntEndsWith,
+  DoesntStartsWith,
+  EndsWith,
+  StartsWith,
+} from "./string.ts";
 
 export * from "./size.ts";
 export * from "./required.ts";
@@ -51,4 +56,6 @@ export const BuiltInParsingRules: Ruling[] = [
   new DigitsBetween(),
   new StartsWith(),
   new EndsWith(),
+  new DoesntStartsWith(),
+  new DoesntEndsWith(),
 ];
