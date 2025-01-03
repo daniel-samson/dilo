@@ -7,7 +7,7 @@ export class Digits implements Ruling {
   }
 
   parseRule(rule: string): Operands {
-    if (rule.startsWith("digits:")) {
+    if (rule.startsWith("digits")) {
       const operands = parseOperands(rule);
 
       if (operands.length !== 1) {
@@ -30,5 +30,46 @@ export class Digits implements Ruling {
     }
 
     throw new Error('Invalid rule: "digits"');
+  }
+}
+
+export class DigitsBetween implements Ruling {
+  ruleName(): string {
+    return "digits_between";
+  }
+
+  parseRule(rule: string): Operands {
+    if (rule.startsWith("digits_between:")) {
+      const operands = parseOperands(rule);
+
+      if (operands.length !== 2) {
+        throw new Error(
+          'Invalid rule: "digits_between" requires 2 operands eg. digits_between:4,6',
+        );
+      }
+
+      const min = Number(operands[0]);
+
+      if (Number.isNaN(min) || !Number.isInteger(min)) {
+        throw new Error(
+          'Invalid rule: "digits_between" requires that the first operand to be an integer eg. digits_between:4,6',
+        );
+      }
+
+      const max = Number(operands[1]);
+
+      if (Number.isNaN(max) || !Number.isInteger(max)) {
+        throw new Error(
+          'Invalid rule: "digits_between" requires that the second operand to be an integer eg. digits_between:4,6',
+        );
+      }
+
+      return {
+        min,
+        max,
+      };
+    }
+
+    throw new Error('Invalid rule: "digits_between"');
   }
 }

@@ -8,6 +8,7 @@ import {
   DecimalType,
   Declined,
   Digits,
+  DigitsBetween,
   IntegerType,
   JsonType,
   Nullable,
@@ -46,4 +47,5 @@ export const BuiltInParsingRules: Ruling[] = [
   new Size(),
   new Contains(),
   new Digits(),
+  new DigitsBetween(),
 ];

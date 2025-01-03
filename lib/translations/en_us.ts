@@ -37,6 +37,7 @@ export const en_us_translations = {
   "doesnt_start_with": ":attribute must not start with :values.",
   "dosnt_end_with": ":attribute must not end with :values.",
   "digits": ":attribute must be :value digits long.",
+  "digits_between": ":attribute must be between :min and :max digits long.",
   "email": ":attribute must be a valid email address.",
   "exists": ":attribute does not exist.",
   "ends_with": ":attribute must end with :values.",
