@@ -44,7 +44,7 @@ foo [ "foo must be a numeric value" ]
 - [version 0.1.x](https://github.com/daniel-samson/dilo/issues/1) (Current version)
 - [version 0.2.x](https://github.com/daniel-samson/dilo/issues/2) - Work In Progress
 - [version 0.3.x](https://github.com/daniel-samson/dilo/issues/4) - In planning
-- [v0.4.x](https://github.com/daniel-samson/dilo/issues/5) - In planning
+- [version 0.4.x](https://github.com/daniel-samson/dilo/issues/5) - In planning
 
 ## Contributing
 
