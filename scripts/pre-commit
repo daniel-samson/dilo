@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if ! deno fmt mod.ts lib/**/*.ts; then
+    echo "Formatting Test failed. Please fix the above issues before pushing."
+    exit 1
+fi
+
+# Run deno lint
+if ! deno lint; then
+    echo "Linting failed. Please fix the above issues before pushing."
+    exit 1
+fi
+
+# Run deno lint
+if ! deno test; then
+    echo "Tests failed. Please fix the above issues before pushing."
+    exit 1
+fi
