@@ -24,6 +24,7 @@ import {
   Size,
   Sometimes,
   StringType,
+  Ulid,
 } from "../mod.ts";
 import {
   DoesntEndsWith,
@@ -47,6 +48,7 @@ export * from "./contains.ts";
 export * from "./digits.ts";
 export * from "./basic_compare.ts";
 export * from "./url.ts";
+export * from "./ulid.ts";
 
 export const BuiltInParsingRules: Ruling[] = [
   new Required(),
@@ -82,4 +84,5 @@ export const BuiltInParsingRules: Ruling[] = [
   new Uppercase(),
   new Lowercase(),
   new Url(),
+  new Ulid(),
 ];
