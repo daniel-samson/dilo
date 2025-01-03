@@ -25,6 +25,7 @@ import {
   EndsWith,
   StartsWith,
 } from "./string.ts";
+import { Email } from "./email.ts";
 
 export * from "./size.ts";
 export * from "./required.ts";
@@ -58,4 +59,5 @@ export const BuiltInParsingRules: Ruling[] = [
   new EndsWith(),
   new DoesntStartsWith(),
   new DoesntEndsWith(),
+  new Email(),
 ];
