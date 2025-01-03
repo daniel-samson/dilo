@@ -132,6 +132,58 @@ Deno.test("GreaterThanOrEqual", () => {
   });
   assertEquals(actual, "foo.gte");
 });
+
+Deno.test("GreaterThanOrEqual: field name", () => {
+  const greaterThanOrEqual = new GreaterThanOrEqual();
+  let actual = greaterThanOrEqual.validate({ foo: 3, bar: 2 }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, undefined);
+
+  actual = greaterThanOrEqual.validate({ foo: 2, bar: 2 }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, undefined);
+
+  actual = greaterThanOrEqual.validate({ foo: "ab", bar: "a" }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, undefined);
+
+  actual = greaterThanOrEqual.validate({ foo: "a", bar: "a" }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, undefined);
+
+  actual = greaterThanOrEqual.validate({ foo: [1, 2], bar: [1] }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, undefined);
+
+  actual = greaterThanOrEqual.validate({ foo: [1], bar: [1] }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, undefined);
+
+  // exceptions
+  assertThrows(
+    () => {
+      greaterThanOrEqual.validate({ foo: 3, bar: "2" }, {
+        attribute: "foo",
+        value: "bar",
+      });
+    },
+    Error,
+    "gte: operand must be of the same type as the value",
+  );
+});
+
 Deno.test("LessThan", () => {
   const lessThan = new LessThan();
   let actual = lessThan.validate({ foo: 1 }, { attribute: "foo", value: 0 });
@@ -159,6 +211,57 @@ Deno.test("LessThan", () => {
 
   actual = lessThan.validate({ foo: false }, { attribute: "foo", value: 2 });
   assertEquals(actual, "foo.lt");
+});
+
+Deno.test("LessThan: field name", () => {
+  const lessThan = new LessThan();
+  let actual = lessThan.validate({ foo: 1, bar: 2 }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, undefined);
+
+  actual = lessThan.validate({ foo: 2, bar: 2 }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, "foo.lt");
+
+  actual = lessThan.validate({ foo: "a", bar: "ab" }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, undefined);
+
+  actual = lessThan.validate({ foo: "ab", bar: "a" }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, "foo.lt");
+
+  actual = lessThan.validate({ foo: [1], bar: [1, 2] }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, undefined);
+
+  actual = lessThan.validate({ foo: [1], bar: [1] }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, "foo.lt");
+
+  // exceptions
+  assertThrows(
+    () => {
+      lessThan.validate({ foo: 1, bar: "2" }, {
+        attribute: "foo",
+        value: "bar",
+      });
+    },
+    Error,
+    "lt: operand must be of the same type as the value",
+  );
 });
 
 Deno.test("LessThanOrEqual", () => {
@@ -209,6 +312,63 @@ Deno.test("LessThanOrEqual", () => {
     value: 2,
   });
   assertEquals(actual, "foo.lte");
+});
+
+Deno.test("LessThanOrEqual: field name", () => {
+  const lessThanOrEqual = new LessThanOrEqual();
+  let actual = lessThanOrEqual.validate({ foo: 1, bar: 2 }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, undefined);
+
+  actual = lessThanOrEqual.validate({ foo: 2, bar: 2 }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, undefined);
+
+  actual = lessThanOrEqual.validate({ foo: "a", bar: "ab" }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, undefined);
+
+  actual = lessThanOrEqual.validate({ foo: "a", bar: "a" }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, undefined);
+
+  actual = lessThanOrEqual.validate({ foo: "ab", bar: "a" }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, "foo.lte");
+
+  actual = lessThanOrEqual.validate({ foo: [1], bar: [1, 2] }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, undefined);
+
+  actual = lessThanOrEqual.validate({ foo: [1], bar: [1] }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, undefined);
+
+  // exceptions
+  assertThrows(
+    () => {
+      lessThanOrEqual.validate({ foo: 1, bar: "2" }, {
+        attribute: "foo",
+        value: "bar",
+      });
+    },
+    Error,
+    "lte: operand must be of the same type as the value",
+  );
 });
 
 Deno.test("In", () => {

@@ -71,6 +71,36 @@ export class GreaterThanOrEqual implements Validates {
       return `${needle}.gte`;
     }
 
+    // field nam support
+    if ((operands["value"] as string in haystack)) {
+      const fieldValue = haystack[operands["value"] as string];
+      if (typeof fieldValue !== typeof value) {
+        throw new Error("gte: operand must be of the same type as the value");
+      }
+
+      if (
+        typeof value === "string" &&
+        value.length >= (fieldValue as string).length
+      ) {
+        return undefined;
+      }
+
+      if (
+        Number.isFinite(value) && (value as number) >= (fieldValue as number)
+      ) {
+        return undefined;
+      }
+
+      if (
+        Array.isArray(value) &&
+        value.length >= (fieldValue as Array<Value>).length
+      ) {
+        return undefined;
+      }
+
+      return `${needle}.gte`;
+    }
+
     const compareValue = Number(operands["value"]);
 
     if (Number.isFinite(value) && (value as number) >= compareValue) {
@@ -103,6 +133,36 @@ export class LessThan implements Validates {
       return `${needle}.lt`;
     }
 
+    // field nam support
+    if ((operands["value"] as string in haystack)) {
+      const fieldValue = haystack[operands["value"] as string];
+      if (typeof fieldValue !== typeof value) {
+        throw new Error("lt: operand must be of the same type as the value");
+      }
+
+      if (
+        typeof value === "string" &&
+        value.length < (fieldValue as string).length
+      ) {
+        return undefined;
+      }
+
+      if (
+        Number.isFinite(value) && (value as number) < (fieldValue as number)
+      ) {
+        return undefined;
+      }
+
+      if (
+        Array.isArray(value) &&
+        value.length < (fieldValue as Array<Value>).length
+      ) {
+        return undefined;
+      }
+
+      return `${needle}.lt`;
+    }
+
     const compareValue = Number(operands["value"]);
 
     if (Number.isFinite(value) && (value as number) < compareValue) {
@@ -130,6 +190,36 @@ export class LessThanOrEqual implements Validates {
     const value = haystack[needle];
 
     if (value === null && operands["value"] === undefined) {
+      return `${needle}.lte`;
+    }
+
+    // field nam support
+    if ((operands["value"] as string in haystack)) {
+      const fieldValue = haystack[operands["value"] as string];
+      if (typeof fieldValue !== typeof value) {
+        throw new Error("lte: operand must be of the same type as the value");
+      }
+
+      if (
+        typeof value === "string" &&
+        value.length <= (fieldValue as string).length
+      ) {
+        return undefined;
+      }
+
+      if (
+        Number.isFinite(value) && (value as number) <= (fieldValue as number)
+      ) {
+        return undefined;
+      }
+
+      if (
+        Array.isArray(value) &&
+        value.length <= (fieldValue as Array<Value>).length
+      ) {
+        return undefined;
+      }
+
       return `${needle}.lte`;
     }
 
