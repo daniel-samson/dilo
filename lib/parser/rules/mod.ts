@@ -26,6 +26,7 @@ import {
   StartsWith,
 } from "./string.ts";
 import { Email } from "./email.ts";
+import { Filled } from "./filled.ts";
 
 export * from "./size.ts";
 export * from "./required.ts";
@@ -60,4 +61,5 @@ export const BuiltInParsingRules: Ruling[] = [
   new DoesntStartsWith(),
   new DoesntEndsWith(),
   new Email(),
+  new Filled(),
 ];

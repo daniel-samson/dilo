@@ -50,6 +50,7 @@ export const en_us_translations = {
   "exclude_with_all":
     ":attribute must exclude :values when all of :values are present.",
   "file": ":attribute must be a valid file",
+  "filled": ":attribute must be filled in",
   "gt": ":attribute must be greater than :value",
   "gte": ":attribute must be greater or equal than :value",
   "hex_color": ":attribute must be a valid hex",

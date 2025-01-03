@@ -23,6 +23,7 @@ import {
   StartsWith,
 } from "./string.ts";
 import { Email } from "./email.ts";
+import { Filled } from "./filled.ts";
 
 const BuiltInValidators: Record<string, Validates> = {
   "required": new Required(),
@@ -46,6 +47,7 @@ const BuiltInValidators: Record<string, Validates> = {
   "doesnt_starts_with": new DoesntStartsWith(),
   "doesnt_ends_with": new DoesntEndsWith(),
   "email": new Email(),
+  "filled": new Filled(),
 };
 
 export default BuiltInValidators;
