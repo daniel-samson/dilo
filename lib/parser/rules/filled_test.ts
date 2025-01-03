@@ -7,6 +7,7 @@ Deno.test("Test filled", () => {
   const actual = filled.parseRule("filled");
   const expected = {};
   assertEquals(actual, expected);
+  assertEquals(filled.ruleName(), "filled");
 
   assertThrows(
     () => {

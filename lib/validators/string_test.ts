@@ -127,6 +127,15 @@ Deno.test("uppercase: is present as string", () => {
 
   actual = uppercase.validate({ foo: "BAR" }, { attribute: "foo" });
   assertEquals(actual, undefined);
+
+  actual = uppercase.validate({ foo: false }, { attribute: "foo" });
+  assertEquals(actual, "foo.uppercase");
+
+  actual = uppercase.validate({ foo: null }, { attribute: "foo" });
+  assertEquals(actual, "foo.uppercase");
+
+  actual = uppercase.validate({ foo: undefined }, { attribute: "foo" });
+  assertEquals(actual, "foo.uppercase");
 });
 
 Deno.test("lowercase: is present as string", () => {
@@ -135,5 +144,14 @@ Deno.test("lowercase: is present as string", () => {
   assertEquals(actual, undefined);
 
   actual = lowercase.validate({ foo: "BAR" }, { attribute: "foo" });
+  assertEquals(actual, "foo.lowercase");
+
+  actual = lowercase.validate({ foo: false }, { attribute: "foo" });
+  assertEquals(actual, "foo.lowercase");
+
+  actual = lowercase.validate({ foo: null }, { attribute: "foo" });
+  assertEquals(actual, "foo.lowercase");
+
+  actual = lowercase.validate({ foo: undefined }, { attribute: "foo" });
   assertEquals(actual, "foo.lowercase");
 });

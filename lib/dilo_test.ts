@@ -1,5 +1,6 @@
 import { assertEquals } from "@std/assert/equals";
 import { Dilo } from "./dilo.ts";
+import { assertThrows } from "@std/assert/throws";
 
 Deno.test("Dilo: simple validate", () => {
   const rules = {
@@ -65,4 +66,15 @@ Deno.test("Dilo: validate nullable", () => {
 
   actual = dilo.validate({ foo: 1, baz: null });
   assertEquals(actual, undefined);
+});
+
+Deno.test("Dilo: no rules", () => {
+  const rules = {};
+  assertThrows(
+    () => {
+      Dilo.make(rules);
+    },
+    Error,
+    "No rules have been registered",
+  );
 });

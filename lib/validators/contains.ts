@@ -20,12 +20,8 @@ export class Contains implements Validates {
             return `${needle}.contains`;
           }
         }
-
-        return undefined;
       }
-    }
-
-    if (values !== null && typeof values === "string") {
+    } else if (values !== null && typeof values === "string") {
       if (operands["values"] !== undefined) {
         const keys = operands["values"] as [string];
         for (const key of keys) {
@@ -33,11 +29,9 @@ export class Contains implements Validates {
             return `${needle}.contains`;
           }
         }
-
-        return undefined;
       }
     }
 
-    return `${needle}.contains`;
+    return undefined;
   }
 }

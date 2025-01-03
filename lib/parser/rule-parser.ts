@@ -23,14 +23,6 @@ export class RuleParser implements RuleParserInterface {
   parseFieldRules(field: string, rules: string): ParsedRule[] {
     const parsedRules: ParsedRule[] = [];
 
-    if (typeof field !== "string") {
-      throw new Error("Field must be a string");
-    }
-
-    if (typeof rules !== "string") {
-      throw new Error("Rules must be a string");
-    }
-
     const ruleList = rules.split("|");
     for (const rule of ruleList) {
       const trimmedRule = rule.trim();

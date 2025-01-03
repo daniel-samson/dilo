@@ -9,11 +9,7 @@ export class GreaterThan implements Validates {
     const needle = operands["attribute"] as string;
     const value = haystack[needle];
 
-    if (value === null && operands["value"] === undefined) {
-      return `${needle}.gt`;
-    }
-
-    // field nam support
+    // field name support
     if ((operands["value"] as string in haystack)) {
       const fieldValue = haystack[operands["value"] as string];
       if (typeof fieldValue !== typeof value) {
@@ -67,11 +63,7 @@ export class GreaterThanOrEqual implements Validates {
     const needle = operands["attribute"] as string;
     const value = haystack[needle];
 
-    if (value === null && operands["value"] === undefined) {
-      return `${needle}.gte`;
-    }
-
-    // field nam support
+    // field name support
     if ((operands["value"] as string in haystack)) {
       const fieldValue = haystack[operands["value"] as string];
       if (typeof fieldValue !== typeof value) {
@@ -129,11 +121,7 @@ export class LessThan implements Validates {
     const needle = operands["attribute"] as string;
     const value = haystack[needle];
 
-    if (value === null && operands["value"] === undefined) {
-      return `${needle}.lt`;
-    }
-
-    // field nam support
+    // field name support
     if ((operands["value"] as string in haystack)) {
       const fieldValue = haystack[operands["value"] as string];
       if (typeof fieldValue !== typeof value) {
@@ -189,11 +177,7 @@ export class LessThanOrEqual implements Validates {
     const needle = operands["attribute"] as string;
     const value = haystack[needle];
 
-    if (value === null && operands["value"] === undefined) {
-      return `${needle}.lte`;
-    }
-
-    // field nam support
+    // field name support
     if ((operands["value"] as string in haystack)) {
       const fieldValue = haystack[operands["value"] as string];
       if (typeof fieldValue !== typeof value) {
@@ -265,14 +249,12 @@ export class In implements Validates {
       }
 
       for (const key of value) {
-        if (Number.isFinite(Number(key))) {
+        if (key === null && values.includes("null")) {
+          break;
+        } else if (Number.isFinite(Number(key))) {
           if (!values.includes(String(key))) {
             return `${needle}.in`;
           }
-        } else if (key === null && values.includes("null")) {
-          break;
-        } else if (key === undefined && values.includes("undefined")) {
-          break;
         } else if (!values.includes(key)) {
           return `${needle}.in`;
         }

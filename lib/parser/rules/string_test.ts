@@ -25,6 +25,7 @@ Deno.test("Test starts_with", () => {
   actual = startsWith.parseRule("starts_with:foo,bar");
   expected = { values: ["foo", "bar"] };
   assertEquals(actual, expected);
+  assertEquals(startsWith.ruleName(), "starts_with");
 });
 
 Deno.test("Test ends_with", () => {
@@ -44,6 +45,7 @@ Deno.test("Test ends_with", () => {
   actual = endsWith.parseRule("ends_with:foo,bar");
   expected = { values: ["foo", "bar"] };
   assertEquals(actual, expected);
+  assertEquals(endsWith.ruleName(), "ends_with");
 });
 
 Deno.test("Test doesnt_starts_with", () => {
@@ -63,6 +65,7 @@ Deno.test("Test doesnt_starts_with", () => {
   actual = doesntStartsWith.parseRule("doesnt_starts_with:foo,bar");
   expected = { values: ["foo", "bar"] };
   assertEquals(actual, expected);
+  assertEquals(doesntStartsWith.ruleName(), "doesnt_starts_with");
 });
 
 Deno.test("Test doesnt_ends_with", () => {
@@ -82,6 +85,7 @@ Deno.test("Test doesnt_ends_with", () => {
   actual = doesntEndsWith.parseRule("doesnt_ends_with:foo,bar");
   expected = { values: ["foo", "bar"] };
   assertEquals(actual, expected);
+  assertEquals(doesntEndsWith.ruleName(), "doesnt_ends_with");
 });
 
 Deno.test("Test uppercase", () => {
@@ -89,6 +93,15 @@ Deno.test("Test uppercase", () => {
   const actual = uppercase.parseRule("uppercase");
   const expected = {};
   assertEquals(actual, expected);
+  assertEquals(uppercase.ruleName(), "uppercase");
+
+  assertThrows(
+    () => {
+      uppercase.parseRule("uppercase:foo");
+    },
+    Error,
+    'Invalid rule: "uppercase"',
+  );
 });
 
 Deno.test("Test lowercase", () => {
@@ -96,4 +109,13 @@ Deno.test("Test lowercase", () => {
   const actual = lowercase.parseRule("lowercase");
   const expected = {};
   assertEquals(actual, expected);
+  assertEquals(lowercase.ruleName(), "lowercase");
+
+  assertThrows(
+    () => {
+      lowercase.parseRule("lowercase:foo");
+    },
+    Error,
+    'Invalid rule: "lowercase"',
+  );
 });

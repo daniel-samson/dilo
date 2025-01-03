@@ -33,11 +33,23 @@ Deno.test("basic-types: is object", () => {
 
   actual = objectType.validate({ "foo": { "foo": "bar" } }, {
     attribute: "foo",
+    keys: ["foo"],
   });
   expected = undefined;
   assertEquals(actual, expected);
 
+  actual = objectType.validate({ "foo": {} }, {
+    attribute: "foo",
+    keys: ["foo"],
+  });
+  expected = "foo.object";
+  assertEquals(actual, expected);
+
   actual = objectType.validate({ "foo": null }, { attribute: "foo" });
+  expected = "foo.object";
+  assertEquals(actual, expected);
+
+  actual = objectType.validate({ "foo": undefined }, { attribute: "foo" });
   expected = "foo.object";
   assertEquals(actual, expected);
 });

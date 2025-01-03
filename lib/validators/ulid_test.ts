@@ -18,3 +18,17 @@ Deno.test("ulid: is valid", () => {
   });
   assertEquals(actual, "foo.ulid");
 });
+
+Deno.test("ulid: is not a string", () => {
+  const ulid = new Ulid();
+  let actual = ulid.validate({ foo: false }, { attribute: "foo" });
+  const expected = "foo.ulid";
+  assertEquals(actual, expected);
+
+  actual = ulid.validate({ foo: null }, { attribute: "foo" });
+  assertEquals(actual, "foo.ulid");
+
+  actual = ulid.validate({ foo: undefined }, { attribute: "foo" });
+  assertEquals(actual, "foo.ulid");
+  assertEquals(actual, expected);
+});

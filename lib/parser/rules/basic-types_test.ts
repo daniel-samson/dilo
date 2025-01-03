@@ -129,6 +129,15 @@ Deno.test("basic-types parser: decimal parse rule", () => {
     Error,
     'Invalid rule: "decimal" requires you to specify decimal places eg. decimal:1,4 or decimal:2',
   );
+
+  assertThrows(
+    () => {
+      decimalType.parseRule("decimal:1,2,3");
+    },
+    Error,
+    'Invalid rule: "decimal" requires you to specify decimal places eg. decimal:1,4 or decimal:2',
+  );
+
   assertThrows(
     () => {
       decimalType.parseRule("decimal:");

@@ -31,10 +31,6 @@ export class Dilo {
     }
 
     for (const field of fields) {
-      if (typeof rules[field] !== "string") {
-        throw new Error("Rule must be a string");
-      }
-
       this.parsedRules[field] = ruleParser.parseFieldRules(field, rules[field]);
     }
     this.validators = validators;
@@ -60,16 +56,11 @@ export class Dilo {
 
       if (fieldValidation !== undefined) {
         const fieldName = this.extractFieldName(fieldValidation.errorCode);
-        if (fieldName in validation) {
-          if (validation[fieldName] === undefined) {
-            validation[fieldName] = [];
-          }
-
-          validation[fieldName].push(fieldValidation.translation);
-        } else {
+        if (!(fieldName in validation)) {
           validation[fieldName] = [];
-          validation[fieldName].push(fieldValidation.translation);
         }
+
+        (validation[fieldName] as string[]).push(fieldValidation.translation);
       } // else its undefined, so we can ignore it
     }
 

@@ -17,4 +17,19 @@ Deno.test("uuid", () => {
     attribute: "foo",
   });
   assertEquals(actual, "foo.uuid");
+
+  actual = uuid.validate({ foo: false }, {
+    attribute: "foo",
+  });
+  assertEquals(actual, "foo.uuid");
+
+  actual = uuid.validate({ foo: null }, {
+    attribute: "foo",
+  });
+  assertEquals(actual, "foo.uuid");
+
+  actual = uuid.validate({ foo: undefined }, {
+    attribute: "foo",
+  });
+  assertEquals(actual, "foo.uuid");
 });

@@ -22,4 +22,9 @@ Deno.test("url: is valid", () => {
     attribute: "foo",
   });
   assertEquals(actual, "foo.url");
+
+  actual = url.validate({ foo: false }, {
+    attribute: "foo",
+  });
+  assertEquals(actual, "foo.url");
 });

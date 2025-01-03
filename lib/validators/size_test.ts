@@ -42,3 +42,16 @@ Deno.test("size: is integer", () => {
   actual = size.validate({ foo: 3 }, { attribute: "foo", size: 1 });
   assertEquals(actual, "foo.size");
 });
+
+Deno.test("size: is not an array, string, or integer", () => {
+  const size = new Size();
+  let actual = size.validate({ foo: false }, { attribute: "foo", size: 1 });
+  const expected = "foo.size";
+  assertEquals(actual, expected);
+
+  actual = size.validate({ foo: null }, { attribute: "foo", size: 1 });
+  assertEquals(actual, "foo.size");
+
+  actual = size.validate({ foo: undefined }, { attribute: "foo", size: 1 });
+  assertEquals(actual, "foo.size");
+});

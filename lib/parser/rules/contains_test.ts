@@ -6,6 +6,7 @@ Deno.test("contains: parse rule", () => {
   const actual = contains.parseRule("contains:foo,bar");
   const expected = { values: ["foo", "bar"] };
   assertEquals(actual, expected);
+  assertEquals(contains.ruleName(), "contains");
 });
 
 Deno.test("contains: parse rule without operands", () => {

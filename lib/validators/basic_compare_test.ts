@@ -99,6 +99,12 @@ Deno.test("GreaterThanOrEqual", () => {
   });
   assertEquals(actual, undefined);
 
+  actual = greaterThanOrEqual.validate({ foo: [1] }, {
+    attribute: "foo",
+    value: 0,
+  });
+  assertEquals(actual, undefined);
+
   actual = greaterThanOrEqual.validate({ foo: 1 }, {
     attribute: "foo",
     value: 1,
@@ -170,6 +176,12 @@ Deno.test("GreaterThanOrEqual: field name", () => {
     value: "bar",
   });
   assertEquals(actual, undefined);
+
+  actual = greaterThanOrEqual.validate({ foo: false, bar: false }, {
+    attribute: "foo",
+    value: "bar",
+  });
+  assertEquals(actual, "foo.gte");
 
   // exceptions
   assertThrows(
@@ -475,6 +487,18 @@ Deno.test("In", () => {
   actual = inRule.validate({ foo: false }, {
     attribute: "foo",
     values: ["1", "2"],
+  });
+  assertEquals(actual, "foo.in");
+
+  actual = inRule.validate({ foo: [null] }, {
+    attribute: "foo",
+    values: ["null"],
+  });
+  assertEquals(actual, undefined);
+
+  actual = inRule.validate({ foo: ["as"] }, {
+    attribute: "foo",
+    values: ["df"],
   });
   assertEquals(actual, "foo.in");
 });

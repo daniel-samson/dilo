@@ -7,6 +7,7 @@ Deno.test("size: parse rule", () => {
   const actual = size.parseRule("size:10");
   const expected = { size: 10 };
   assertEquals(actual, expected);
+  assertEquals(size.ruleName(), "size");
 });
 
 Deno.test("size: parse rule with operands", () => {

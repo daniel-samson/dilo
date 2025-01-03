@@ -3,7 +3,7 @@ import type { Operands } from "../types.ts";
 
 export class Uuid implements Validates {
   validate(
-    haystack: Record<string, string>,
+    haystack: Record<string, unknown>,
     operands: Operands,
   ): string | undefined {
     const needle = operands["attribute"] as string;

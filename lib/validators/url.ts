@@ -9,7 +9,7 @@ export class Url implements Validates {
    * @returns A string containing the error message if the value is invalid, or undefined if the value is valid.
    */
   validate(
-    haystack: Record<string, string>,
+    haystack: Record<string, unknown>,
     operands: Operands,
   ): string | undefined {
     const needle = operands["attribute"] as string;

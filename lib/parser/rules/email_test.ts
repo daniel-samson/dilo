@@ -6,6 +6,7 @@ Deno.test("Test email", () => {
   const actual = email.parseRule("email");
   const expected = {};
   assertEquals(actual, expected);
+  assertEquals(email.ruleName(), "email");
 
   assertThrows(
     () => {

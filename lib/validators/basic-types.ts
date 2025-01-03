@@ -99,13 +99,9 @@ export class DateType implements Validates {
       return undefined;
     }
 
-    try {
-      const date = new Date(value as string | number | Date);
-      if (date.toString() !== "Invalid Date") {
-        return undefined;
-      }
-    } catch (_) {
-      return `${needle}.date`;
+    const date = new Date(value as string | number | Date);
+    if (date.toString() !== "Invalid Date") {
+      return undefined;
     }
 
     return `${needle}.date`;
