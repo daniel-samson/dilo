@@ -9,8 +9,14 @@ import {
   Declined,
   Digits,
   DigitsBetween,
+  GreaterThan,
+  GreaterThanOrEqual,
+  In,
   IntegerType,
   JsonType,
+  LessThan,
+  LessThanOrEqual,
+  NotIn,
   Nullable,
   NumericType,
   ObjectType,
@@ -36,6 +42,7 @@ export * from "./sometimes.ts";
 export * from "./nullable.ts";
 export * from "./contains.ts";
 export * from "./digits.ts";
+export * from "./basic_compare.ts";
 
 export const BuiltInParsingRules: Ruling[] = [
   new Required(),
@@ -62,4 +69,10 @@ export const BuiltInParsingRules: Ruling[] = [
   new DoesntEndsWith(),
   new Email(),
   new Filled(),
+  new GreaterThan(),
+  new GreaterThanOrEqual(),
+  new LessThan(),
+  new LessThanOrEqual(),
+  new In(),
+  new NotIn(),
 ];

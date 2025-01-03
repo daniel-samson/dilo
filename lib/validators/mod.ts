@@ -24,6 +24,14 @@ import {
 } from "./string.ts";
 import { Email } from "./email.ts";
 import { Filled } from "./filled.ts";
+import {
+  GreaterThan,
+  GreaterThanOrEqual,
+  In,
+  LessThan,
+  LessThanOrEqual,
+  NotIn,
+} from "./basic_compare.ts";
 
 const BuiltInValidators: Record<string, Validates> = {
   "required": new Required(),
@@ -48,6 +56,12 @@ const BuiltInValidators: Record<string, Validates> = {
   "doesnt_ends_with": new DoesntEndsWith(),
   "email": new Email(),
   "filled": new Filled(),
+  "gt": new GreaterThan(),
+  "gte": new GreaterThanOrEqual(),
+  "lt": new LessThan(),
+  "lte": new LessThanOrEqual(),
+  "in": new In(),
+  "not_in": new NotIn(),
 };
 
 export default BuiltInValidators;
