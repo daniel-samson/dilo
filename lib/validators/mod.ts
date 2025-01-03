@@ -16,6 +16,12 @@ import type { Validates } from "../interfaces/validates.ts";
 import { Size } from "./size.ts";
 import { Contains } from "./contains.ts";
 import { Digits } from "./digits.ts";
+import {
+  DoesntEndsWith,
+  DoesntStartsWith,
+  EndsWith,
+  StartsWith,
+} from "./string.ts";
 
 const BuiltInValidators: Record<string, Validates> = {
   "required": new Required(),
@@ -34,6 +40,10 @@ const BuiltInValidators: Record<string, Validates> = {
   "sometimes": new Sometimes(),
   "size": new Size(),
   "contains": new Contains(),
+  "starts_with": new StartsWith(),
+  "ends_with": new EndsWith(),
+  "doesnt_starts_with": new DoesntStartsWith(),
+  "doesnt_ends_with": new DoesntEndsWith(),
 };
 
 export default BuiltInValidators;
