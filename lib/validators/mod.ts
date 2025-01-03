@@ -22,7 +22,7 @@ import {
   EndsWith,
   StartsWith,
 } from "./string.ts";
-import {Email} from "./email.ts";
+import { Email } from "./email.ts";
 
 const BuiltInValidators: Record<string, Validates> = {
   "required": new Required(),
