@@ -40,6 +40,9 @@ foo [ "foo must be a numeric value" ]
 
 ## Documentation
 
+You can find the documentation for the latest version at [read the docs](https://dilo.readthedocs.io/en/latest/).
+
+### Roadmap
 - [version 0.1.x](https://github.com/daniel-samson/dilo/issues/1) 
 - [version 0.2.x](https://github.com/daniel-samson/dilo/issues/2) (Current
   version)
