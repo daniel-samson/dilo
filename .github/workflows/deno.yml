@@ -11,6 +11,7 @@ name: Deno
 on:
   push:
     branches:
+      - "main"
       - "epic/**"
       - "feature/**"
       - "fix/**"
