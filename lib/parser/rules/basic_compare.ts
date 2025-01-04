@@ -2,11 +2,23 @@ import type { Ruling } from "../../mod.ts";
 import type { Operands } from "../../types.ts";
 import { parseOperands } from "./common.ts";
 
+/**
+ * Parses a rule that checks if a value is greater than a given value.
+ */
 export class GreaterThan implements Ruling {
+  /**
+   * The name of the rule.
+   */
   ruleName(): string {
     return "gt";
   }
 
+  /**
+   * Parses a rule that checks if a value is greater than a given value. It breaks the rule into operands and returns them.
+   * @param rule The rule to parse.
+   * @returns The operands of the rule.
+   * @throws Error when the rule does not accept operands
+   */
   parseRule(rule: string): Operands {
     if (rule.startsWith("gt:")) {
       const operands = parseOperands(rule);
@@ -34,11 +46,23 @@ export class GreaterThan implements Ruling {
   }
 }
 
+/**
+ * Parses a rule that checks if a value is greater than or equal to a given value.
+ */
 export class GreaterThanOrEqual implements Ruling {
+  /**
+   * The name of the rule.
+   */
   ruleName(): string {
     return "gte";
   }
 
+  /**
+   * Parses a rule that checks if a value is greater than or equal to a given value. It breaks the rule into operands and returns them.
+   * @param rule The rule to parse.
+   * @returns The operands of the rule.
+   * @throws Error when the rule does not accept operands
+   */
   parseRule(rule: string): Operands {
     if (rule.startsWith("gte:")) {
       const operands = parseOperands(rule);
@@ -66,11 +90,23 @@ export class GreaterThanOrEqual implements Ruling {
   }
 }
 
+/**
+ * Parses a rule that checks if a value is less than a given value.
+ */
 export class LessThan implements Ruling {
+  /**
+   * The name of the rule.
+   */
   ruleName(): string {
     return "lt";
   }
 
+  /**
+   * Parses a rule that checks if a value is less than a given value. It breaks the rule into operands and returns them.
+   * @param rule The rule to parse.
+   * @returns The operands of the rule.
+   * @throws Error when the rule does not accept operands
+   */
   parseRule(rule: string): Operands {
     if (rule.startsWith("lt:")) {
       const operands = parseOperands(rule);
@@ -98,11 +134,23 @@ export class LessThan implements Ruling {
   }
 }
 
+/**
+ * Parses a rule that checks if a value is less than or equal to a given value.
+ */
 export class LessThanOrEqual implements Ruling {
+  /**
+   * The name of the rule.
+   */
   ruleName(): string {
     return "lte";
   }
 
+  /**
+   * Parses a rule that checks if a value is less than or equal to a given value. It breaks the rule into operands and returns them.
+   * @param rule The rule to parse.
+   * @returns The operands of the rule.
+   * @throws Error when the rule does not accept operands
+   */
   parseRule(rule: string): Operands {
     if (rule.startsWith("lte:")) {
       const operands = parseOperands(rule);
@@ -130,11 +178,23 @@ export class LessThanOrEqual implements Ruling {
   }
 }
 
+/**
+ * Parses a rule that checks if a value is in a given array.
+ */
 export class In implements Ruling {
+  /**
+   * The name of the rule.
+   */
   ruleName(): string {
     return "in";
   }
 
+  /**
+   * Parses a rule that checks if a value is in a given array. It breaks the rule into operands and returns them.
+   * @param rule The rule to parse.
+   * @returns The operands of the rule.
+   * @throws Error when the rule does not accept operands
+   */
   parseRule(rule: string): Operands {
     if (rule.startsWith("in:")) {
       const operands = parseOperands(rule);
@@ -148,11 +208,23 @@ export class In implements Ruling {
   }
 }
 
+/**
+ * Parses a rule that checks if a value is not in a given array.
+ */
 export class NotIn implements Ruling {
+  /**
+   * The name of the rule.
+   */
   ruleName(): string {
     return "not_in";
   }
 
+  /**
+   * Parses a rule that checks if a value is not in a given array. It breaks the rule into operands and returns them.
+   * @param rule The rule to parse.
+   * @returns The operands of the rule.
+   * @throws Error when the rule does not accept operands
+   */
   parseRule(rule: string): Operands {
     if (rule.startsWith("not_in:")) {
       const operands = parseOperands(rule);

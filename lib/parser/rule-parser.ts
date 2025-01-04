@@ -1,7 +1,15 @@
 import type { ParsedRule, Ruling } from "../interfaces/ruling.ts";
 import type { RuleParserInterface } from "../mod.ts";
 
+/**
+ * A rule parser is used to parse a field's rules into a list of Ruling objects.
+ */
 export class RuleParser implements RuleParserInterface {
+  /**
+   * Creates a new RuleParser instance.
+   * @param ruleParsers The list of rules to register.
+   * @returns A new RuleParser instance.
+   */
   constructor(private ruleParsers: Ruling[] = []) {}
 
   /**

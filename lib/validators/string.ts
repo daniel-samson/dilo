@@ -1,6 +1,9 @@
 import type { Validates } from "../interfaces/validates.ts";
 import type { Operands } from "../types.ts";
 
+/**
+ * Validates that a value starts with one of the given values.
+ */
 export class StartsWith implements Validates {
   /**
    * Validates that a value starts with one of the given values.
@@ -25,6 +28,9 @@ export class StartsWith implements Validates {
   }
 }
 
+/**
+ * Validates that a value ends with one of the given values.
+ */
 export class EndsWith implements Validates {
   /**
    * Validates that a value ends with one of the given values.
@@ -48,6 +54,9 @@ export class EndsWith implements Validates {
   }
 }
 
+/**
+ * Validates that a value doesn't start with one of the given values.
+ */
 export class DoesntStartsWith implements Validates {
   /**
    * Validates that a value doesn't start with one of the given values.
@@ -71,6 +80,9 @@ export class DoesntStartsWith implements Validates {
   }
 }
 
+/**
+ * Validates that a value doesn't end with one of the given values.
+ */
 export class DoesntEndsWith implements Validates {
   /**
    * Validates that a value doesn't end with one of the given values.

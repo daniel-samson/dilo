@@ -1,5 +1,8 @@
 import type { Operands } from "../types.ts";
 
+/**
+ * A translator is used to translate error messages into a user-friendly format.
+ */
 export interface Translator {
   /**
    * Translates an error code into a user-friendly error message by using the provided operands for dynamic message interpolation.

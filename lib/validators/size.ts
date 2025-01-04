@@ -1,6 +1,9 @@
 import type { Validates } from "../interfaces/validates.ts";
 import type { Haystack, Operands } from "../types.ts";
 
+/**
+ * Validates that a value has a given size.
+ */
 export class Size implements Validates {
   /**
    * The field under validation must have a size matching the given value.

@@ -19,6 +19,15 @@ export class Dilo {
     "en-us",
     BuiltInTranslations,
   );
+  /**
+   * Creates a new Dilo instance with all the built-in parsing rules and validators.
+   * @param rules The rules to use for validation.
+   * @param ruleParser The rule parser to use for parsing rules.
+   * @param validators The validators to use for validation.
+   * @param translator The translator to use for translation.
+   * @returns A new Dilo instance with all the built-in parsing rules and validators.
+   * @throws Error when parsing rules are malformed
+   */
   constructor(
     rules: Record<string, string>,
     ruleParser: RuleParserInterface,

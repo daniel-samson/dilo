@@ -9,9 +9,17 @@ export interface Ruling {
    */
   ruleName(): string;
 
+  /**
+   * Parses a rule. It breaks the rule into operands and returns them.
+   * @param rule The rule to parse.
+   * @returns The operands of the rule.
+   */
   parseRule(rule: string): Operands;
 }
 
+/**
+ * A parsed rule is a rule and its operands.
+ */
 export interface ParsedRule {
   rule: string;
   operands: Operands;

@@ -108,6 +108,9 @@ export class DateType implements Validates {
   }
 }
 
+/**
+ * Validates that a value is a decimal.
+ */
 export class DecimalType implements Validates {
   /**
    * Validates that a value is an array.
@@ -142,6 +145,9 @@ export class DecimalType implements Validates {
   }
 }
 
+/**
+ * Validates that a value is an integer.
+ */
 export class IntegerType implements Validates {
   /**
    * Validates that a value is an array.
@@ -161,6 +167,9 @@ export class IntegerType implements Validates {
   }
 }
 
+/**
+ * Validates that a value is a JSON string.
+ */
 export class JsonType implements Validates {
   /**
    * Validates that a value is an array.
@@ -181,6 +190,9 @@ export class JsonType implements Validates {
   }
 }
 
+/**
+ * Validates that a value is a numeric value.
+ */
 export class NumericType implements Validates {
   /**
    * Validates that a value is an array.
@@ -200,6 +212,9 @@ export class NumericType implements Validates {
   }
 }
 
+/**
+ * Validates that a value is a string.
+ */
 export class StringType implements Validates {
   /**
    * Validates that a value is an array.

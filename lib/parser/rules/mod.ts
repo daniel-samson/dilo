@@ -51,6 +51,9 @@ export * from "./basic_compare.ts";
 export * from "./url.ts";
 export * from "./ulid.ts";
 
+/**
+ * A list of built-in parsing rules. This can be used as a base to create custom parsing rules.
+ */
 export const BuiltInParsingRules: Ruling[] = [
   new Required(),
   new Sometimes(),

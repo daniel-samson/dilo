@@ -38,6 +38,9 @@ import { Url } from "./url.ts";
 import { Ulid } from "./ulid.ts";
 import { Uuid } from "./uuid.ts";
 
+/**
+ * A list of built-in validators. This can be used as a base to create custom validators.
+ */
 const BuiltInValidators: Record<string, Validates> = {
   "required": new Required(),
   "array": new ArrayType(),

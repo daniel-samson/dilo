@@ -1,6 +1,9 @@
 import type { Validates } from "../mod.ts";
 import type { Operands } from "../types.ts";
 
+/**
+ * Validates that a value is a valid URL.
+ */
 export class Url implements Validates {
   /**
    * Validates that a value is a valid URL.

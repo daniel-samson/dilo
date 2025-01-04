@@ -1,6 +1,9 @@
 import type { Validates } from "../interfaces/validates.ts";
 import type { Operands, Value } from "../types.ts";
 
+/**
+ * Validates that a value is a valid number of digits.
+ */
 export class Digits implements Validates {
   /**
    * Validates that a value is a valid number of digits.
@@ -26,6 +29,9 @@ export class Digits implements Validates {
   }
 }
 
+/**
+ * Validates that a value is a valid number of digits between a given range.
+ */
 export class DigitsBetween implements Validates {
   /**
    * Validates that a value is a valid number of digits.

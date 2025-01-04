@@ -1,7 +1,16 @@
 import type { Validates } from "../mod.ts";
 import type { Operands, Value } from "../types.ts";
 
+/**
+ * Validates that a value is greater than a given value.
+ */
 export class GreaterThan implements Validates {
+  /**
+   * Validates that a value is greater than a given value.
+   * @param haystack The object to validate against.
+   * @param operands The operands to the rule.
+   * @returns A string containing the error message if the value is invalid, false if the value is valid but validation should discontinue, or undefined if the value is valid.
+   */
   validate(
     haystack: Record<string, Value | Array<Value>>,
     operands: Operands,
@@ -55,7 +64,16 @@ export class GreaterThan implements Validates {
   }
 }
 
+/**
+ * Validates that a value is greater than or equal to a given value.
+ */
 export class GreaterThanOrEqual implements Validates {
+  /**
+   * Validates that a value is greater than or equal to a given value.
+   * @param haystack The object to validate against.
+   * @param operands The operands to the rule.
+   * @returns A string containing the error message if the value is invalid, false if the value is valid but validation should discontinue, or undefined if the value is valid.
+   */
   validate(
     haystack: Record<string, Value | Array<Value>>,
     operands: Operands,
@@ -113,7 +131,16 @@ export class GreaterThanOrEqual implements Validates {
   }
 }
 
+/**
+ * Validates that a value is less than a given value.
+ */
 export class LessThan implements Validates {
+  /**
+   * Validates that a value is less than a given value.
+   * @param haystack The object to validate against.
+   * @param operands The operands to the rule.
+   * @returns A string containing the error message if the value is invalid, false if the value is valid but validation should discontinue, or undefined if the value is valid.
+   */
   validate(
     haystack: Record<string, Value | Array<Value>>,
     operands: Operands,
@@ -169,7 +196,16 @@ export class LessThan implements Validates {
   }
 }
 
+/**
+ * Validates that a value is less than or equal to a given value.
+ */
 export class LessThanOrEqual implements Validates {
+  /**
+   * Validates that a value is less than or equal to a given value.
+   * @param haystack The object to validate against.
+   * @param operands The operands to the rule.
+   * @returns A string containing the error message if the value is invalid, false if the value is valid but validation should discontinue, or undefined if the value is valid.
+   */
   validate(
     haystack: Record<string, Value | Array<Value>>,
     operands: Operands,
@@ -227,7 +263,16 @@ export class LessThanOrEqual implements Validates {
   }
 }
 
+/**
+ * Validates that a value is in a given array.
+ */
 export class In implements Validates {
+  /**
+   * Validates that a value is in a given array.
+   * @param haystack The object to validate against.
+   * @param operands The operands to the rule.
+   * @returns A string containing the error message if the value is invalid, false if the value is valid but validation should discontinue, or undefined if the value is valid.
+   */
   validate(
     haystack: Record<string, Value | Array<Value>>,
     operands: Operands,
@@ -275,7 +320,16 @@ export class In implements Validates {
   }
 }
 
+/**
+ * Validates that a value is not in a given array.
+ */
 export class NotIn implements Validates {
+  /**
+   * Validates that a value is not in a given array.
+   * @param haystack The object to validate against.
+   * @param operands The operands to the rule.
+   * @returns A string containing the error message if the value is invalid, false if the value is valid but validation should discontinue, or undefined if the value is valid.
+   */
   validate(
     haystack: Record<string, Value | Array<Value>>,
     operands: Operands,

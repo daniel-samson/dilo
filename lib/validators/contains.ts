@@ -1,5 +1,8 @@
 import type { Haystack, Operands, Validates } from "../mod.ts";
 
+/**
+ * Validates that a value contains a given value.
+ */
 export class Contains implements Validates {
   /**
    * The field under validation must be either an array that contains all the given parameter values, or a string that contains the values given.

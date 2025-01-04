@@ -1,6 +1,9 @@
 import type { Validates } from "../interfaces/validates.ts";
 import type { Haystack, Operands } from "../types.ts";
 
+/**
+ * Validates that a value is a valid email address.
+ */
 export class Email implements Validates {
   /**
    * Validates that a value is a valid email address.

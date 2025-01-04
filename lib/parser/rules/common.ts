@@ -1,3 +1,9 @@
+/**
+ * Parses a rule into operands.
+ * @param rule The rule to parse.
+ * @returns The operands of the rule.
+ * @throws Error when the rule does not accept operands
+ */
 export function parseOperands(rule: string): string[] {
   const keys = rule.split(":")[1].split(",");
   const regex = /^\s*$/;

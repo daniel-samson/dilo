@@ -1,7 +1,7 @@
 import type { Haystack, Operands, Validates } from "../mod.ts";
 
 /**
- * Validates that a value is filled in.
+ * Validates that a value is filled in when key is present.
  */
 export class Filled implements Validates {
   /**

@@ -17,6 +17,9 @@ export interface Validates {
   ): string | false | undefined;
 }
 
+/**
+ * A validates error is an error message and its operands which is used to populate placeholders in the error message.
+ */
 export interface ValidatesError {
   errorCode: string;
   operands: Operands;
