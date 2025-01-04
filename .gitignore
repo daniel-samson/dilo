@@ -1,3 +1,4 @@
 # Coverage files
 coverage/
 *.lcov
+docs/
