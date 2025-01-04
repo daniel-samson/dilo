@@ -11,18 +11,17 @@ name: Deno
 on:
   push:
     branches:
-      - "main"
-      - "epic*"
-      - "feature*"
-      - "fix*"
-      - "hotfix*"
+      - "epic/**"
+      - "feature/**"
+      - "fix/**"
+      - "hotfix/**"
   pull_request:
     branches:
       - "main"
-      - "epic*"
-      - "feature*"
-      - "fix*"
-      - "hotfix*"
+      - "epic/**"
+      - "feature/**"
+      - "fix/**"
+      - "hotfix/**"
 
 permissions:
   contents: read
@@ -37,16 +36,24 @@ jobs:
 
       - name: Setup Deno
         # uses: denoland/setup-deno@v1
-        uses: denoland/setup-deno@61fe2df320078202e33d7d5ad347e7dcfa0e8f31  # v1.1.2
+        uses: denoland/setup-deno@61fe2df320078202e33d7d5ad347e7dcfa0e8f31 # v1.1.2
         with:
           deno-version: v2.x
 
-      # Uncomment this step to verify the use of 'deno fmt' on each commit.
-      # - name: Verify formatting
-      #   run: deno fmt --check
+      - name: Verify formatting
+        run: deno fmt --check mod.ts lib/**/*.ts
 
       - name: Run linter
         run: deno lint
 
       - name: Run tests
         run: deno test -A
+
+      - name: Generate coverage report
+        run: deno task lcov
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          files: cov.lcov
+          token: ${{ secrets.CODECOV_TOKEN }}

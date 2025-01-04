@@ -1,10 +1,15 @@
 {
   "name": "@danielsamson/dilo",
   "description": "A validation library for Deno",
-  "version": "0.1.2",
+  "version": "0.2.0-alpha.1 ",
   "repository": "https://github.com/daniel-samson/dilo",
   "license": "MIT",
   "tasks": {
+    "fmt-check": "deno fmt --check mod.ts lib/**/*.ts",
+    "fmt": "deno fmt mod.ts lib/**/*.ts",
+    "lcov": "rm -fr coverage/ && deno test --coverage && deno coverage --lcov --output=cov.lcov",
+    "coverage-html": "rm -fr coverage/ && deno test --coverage && deno coverage --lcov --output=cov.lcov && deno coverage --html",
+    "qa": "deno fmt && deno lint && deno test"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1"
@@ -13,6 +18,13 @@
   "test": {
     "include": [
       "lib/"
+    ]
+  },
+  "publish": {
+    "exclude": [
+      "setup-hooks.sh",
+      "scripts/",
+      ".github/"
     ]
   }
 }
