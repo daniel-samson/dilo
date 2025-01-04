@@ -1,20 +1,15 @@
 # dilo
 
-A validation library for deno. The name is short for "Dilophosaurus".
+A validation library for deno. The name is short for "Dilophosaurus". It is essentially a port of laravel's validation library.
 
 ## Project Status
 
-This project is currently in development.
+This project is currently in  active development. It follows the practices of [Semantic Versioning](https://semver.org/).
 
 [![Deno](https://github.com/daniel-samson/dilo/actions/workflows/deno.yml/badge.svg)](https://github.com/daniel-samson/dilo/actions/workflows/deno.yml)
 [![codecov](https://codecov.io/gh/daniel-samson/dilo/graph/badge.svg?token=tIzOnJXw1G)](https://codecov.io/gh/daniel-samson/dilo)
 [![JSR](https://jsr.io/badges/@danielsamson/dilo)](https://jsr.io/@danielsamson/dilo)
 [![JSR Score](https://jsr.io/badges/@danielsamson/dilo/score)](https://jsr.io/@danielsamson/dilo>)
-
-### v0.2.x
-
-[![Deno](https://github.com/daniel-samson/dilo/actions/workflows/deno.yml/badge.svg?branch=epic%2F0.2.x)](https://github.com/daniel-samson/dilo/actions/workflows/deno.yml)
-[![codecov](https://codecov.io/gh/daniel-samson/dilo/branch/epic%2F0.2.x/graph/badge.svg?token=tIzOnJXw1G)](https://codecov.io/gh/daniel-samson/dilo)
 
 ## Usage
 
@@ -45,11 +40,10 @@ foo [ "foo must be a numeric value" ]
 
 ## Documentation
 
-- [version 0.1.x](https://github.com/daniel-samson/dilo/issues/1) (Current
+- [version 0.1.x](https://github.com/daniel-samson/dilo/issues/1) 
+- [version 0.2.x](https://github.com/daniel-samson/dilo/issues/2) (Current
   version)
-- [version 0.2.x](https://github.com/daniel-samson/dilo/issues/2) - Work In
-  Progress
-- [version 0.3.x](https://github.com/daniel-samson/dilo/issues/4) - In planning
+- [version 0.3.x](https://github.com/daniel-samson/dilo/issues/4) - Work In Progress
 - [version 0.4.x](https://github.com/daniel-samson/dilo/issues/5) - In planning
 
 ## Contributing
