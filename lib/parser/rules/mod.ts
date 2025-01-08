@@ -16,6 +16,7 @@ import {
   JsonType,
   LessThan,
   LessThanOrEqual,
+  Missing,
   NotIn,
   Nullable,
   NumericType,
@@ -50,6 +51,7 @@ export * from "./digits.ts";
 export * from "./basic_compare.ts";
 export * from "./url.ts";
 export * from "./ulid.ts";
+export * from "./missing.ts";
 
 /**
  * A list of built-in parsing rules. This can be used as a base to create custom parsing rules.
@@ -90,4 +92,5 @@ export const BuiltInParsingRules: Ruling[] = [
   new Url(),
   new Ulid(),
   new Uuid(),
+  new Missing(),
 ];

@@ -37,6 +37,7 @@ import {
 import { Url } from "./url.ts";
 import { Ulid } from "./ulid.ts";
 import { Uuid } from "./uuid.ts";
+import { Missing } from "./missing.ts";
 
 /**
  * A list of built-in validators. This can be used as a base to create custom validators.
@@ -75,6 +76,7 @@ const BuiltInValidators: Record<string, Validates> = {
   "url": new Url(),
   "ulid": new Ulid(),
   "uuid": new Uuid(),
+  "missing": new Missing(),
 };
 
 export default BuiltInValidators;
