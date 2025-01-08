@@ -33,8 +33,28 @@ Deno.test("mac_address: is valid", () => {
   });
   assertEquals(actual, "foo.mac_address");
 
+  actual = macAddress.validate({ foo: "0123456789az" }, {
+    attribute: "foo",
+  });
+  assertEquals(actual, "foo.mac_address");
+
   actual = macAddress.validate({ foo: "0123456789ab" }, {
     attribute: "foo",
   });
   assertEquals(actual, undefined);
+
+  actual = macAddress.validate({ foo: false }, {
+    attribute: "foo",
+  });
+  assertEquals(actual, `foo.mac_address`);
+
+  actual = macAddress.validate({ foo: null }, {
+    attribute: "foo",
+  });
+  assertEquals(actual, `foo.mac_address`);
+
+  actual = macAddress.validate({ foo: undefined }, {
+    attribute: "foo",
+  });
+  assertEquals(actual, `foo.mac_address`);
 });
