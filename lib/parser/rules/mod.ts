@@ -40,6 +40,7 @@ import { Filled } from "./filled.ts";
 import { Url } from "./url.ts";
 import { Uuid } from "./uuid.ts";
 import { Same } from "./same.ts";
+import { Ip, Ipv4, Ipv6 } from "./ip.ts";
 
 export * from "./size.ts";
 export * from "./required.ts";
@@ -54,6 +55,7 @@ export * from "./url.ts";
 export * from "./ulid.ts";
 export * from "./missing.ts";
 export * from "./same.ts";
+export * from "./ip.ts";
 
 /**
  * A list of built-in parsing rules. This can be used as a base to create custom parsing rules.
@@ -96,4 +98,7 @@ export const BuiltInParsingRules: Ruling[] = [
   new Uuid(),
   new Missing(),
   new Same(),
+  new Ip(),
+  new Ipv4(),
+  new Ipv6(),
 ];
