@@ -39,6 +39,7 @@ import { Ulid } from "./ulid.ts";
 import { Uuid } from "./uuid.ts";
 import { Missing } from "./missing.ts";
 import { SameField } from "./same.ts";
+import { MacAddress } from "./mac_address.ts";
 
 /**
  * A list of built-in validators. This can be used as a base to create custom validators.
@@ -79,6 +80,7 @@ const BuiltInValidators: Record<string, Validates> = {
   "uuid": new Uuid(),
   "missing": new Missing(),
   "same_field": new SameField(),
+  "mac_address": new MacAddress(),
 };
 
 export default BuiltInValidators;
