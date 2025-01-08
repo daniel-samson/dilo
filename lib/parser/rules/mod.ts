@@ -39,6 +39,7 @@ import { Email } from "./email.ts";
 import { Filled } from "./filled.ts";
 import { Url } from "./url.ts";
 import { Uuid } from "./uuid.ts";
+import { Same } from "./same.ts";
 
 export * from "./size.ts";
 export * from "./required.ts";
@@ -52,6 +53,7 @@ export * from "./basic_compare.ts";
 export * from "./url.ts";
 export * from "./ulid.ts";
 export * from "./missing.ts";
+export * from "./same.ts";
 
 /**
  * A list of built-in parsing rules. This can be used as a base to create custom parsing rules.
@@ -93,4 +95,5 @@ export const BuiltInParsingRules: Ruling[] = [
   new Ulid(),
   new Uuid(),
   new Missing(),
+  new Same(),
 ];
