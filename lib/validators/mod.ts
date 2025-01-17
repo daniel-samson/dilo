@@ -37,6 +37,16 @@ import {
 import { Url } from "./url.ts";
 import { Ulid } from "./ulid.ts";
 import { Uuid } from "./uuid.ts";
+import {
+  Missing,
+  MissingIf,
+  MissingUnless,
+  MissingWith,
+  MissingWithAll,
+} from "./missing.ts";
+import { SameField } from "./same.ts";
+import { MacAddress } from "./mac_address.ts";
+import { Ip, Ipv4, Ipv6 } from "./ip.ts";
 
 /**
  * A list of built-in validators. This can be used as a base to create custom validators.
@@ -75,6 +85,16 @@ const BuiltInValidators: Record<string, Validates> = {
   "url": new Url(),
   "ulid": new Ulid(),
   "uuid": new Uuid(),
+  "missing": new Missing(),
+  "missing_with": new MissingWith(),
+  "missing_with_all": new MissingWithAll(),
+  "missing_unless": new MissingUnless(),
+  "missing_if": new MissingIf(),
+  "same_field": new SameField(),
+  "mac_address": new MacAddress(),
+  "ip": new Ip(),
+  "ipv4": new Ipv4(),
+  "ipv6": new Ipv6(),
 };
 
 export default BuiltInValidators;

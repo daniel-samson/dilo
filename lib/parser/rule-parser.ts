@@ -37,10 +37,23 @@ export class RuleParser implements RuleParserInterface {
       if (trimmedRule === "") {
         continue;
       }
+      let ruleName = trimmedRule;
+      if (trimmedRule.includes(":")) {
+        ruleName = trimmedRule.split(":")[0];
+      }
+
+      if (
+        !this.ruleParsers.find((ruleParser) =>
+          ruleParser.ruleName() === ruleName
+        )
+      ) {
+        console.warn(`Rule "${ruleName}" is not registered.`);
+        continue;
+      }
 
       // find the rule parser that matches the rule
       for (const ruleParser of this.ruleParsers) {
-        if (trimmedRule.startsWith(ruleParser.ruleName())) {
+        if (ruleName === ruleParser.ruleName()) {
           const parsedOperands = ruleParser.parseRule(rule);
           parsedRules.push({
             rule: ruleParser.ruleName(),

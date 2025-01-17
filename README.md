@@ -1,10 +1,12 @@
 # dilo
 
-A validation library for deno. The name is short for "Dilophosaurus". It is essentially a port of laravel's validation library.
+A validation library for deno. The name is short for "Dilophosaurus". It is
+essentially a port of laravel's validation library.
 
 ## Project Status
 
-This project is currently in  active development. It follows the practices of [Semantic Versioning](https://semver.org/).
+This project is currently in active development. It follows the practices of
+[Semantic Versioning](https://semver.org/).
 
 [![Deno](https://github.com/daniel-samson/dilo/actions/workflows/deno.yml/badge.svg)](https://github.com/daniel-samson/dilo/actions/workflows/deno.yml)
 [![codecov](https://codecov.io/gh/daniel-samson/dilo/graph/badge.svg?token=tIzOnJXw1G)](https://codecov.io/gh/daniel-samson/dilo)
@@ -40,10 +42,16 @@ foo [ "foo must be a numeric value" ]
 
 ## Documentation
 
-- [version 0.1.x](https://github.com/daniel-samson/dilo/issues/1) 
+You can find the documentation for the latest version at
+[read the docs](https://dilo.readthedocs.io/en/latest/).
+
+### Roadmap
+
+- [version 0.1.x](https://github.com/daniel-samson/dilo/issues/1)
 - [version 0.2.x](https://github.com/daniel-samson/dilo/issues/2) (Current
   version)
-- [version 0.3.x](https://github.com/daniel-samson/dilo/issues/4) - Work In Progress
+- [version 0.3.x](https://github.com/daniel-samson/dilo/issues/4) - Work In
+  Progress
 - [version 0.4.x](https://github.com/daniel-samson/dilo/issues/5) - In planning
 
 ## Contributing
