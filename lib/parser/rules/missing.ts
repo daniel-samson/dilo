@@ -87,3 +87,34 @@ export class MissingWithAll implements Ruling {
     throw new Error('Invalid rule: "missing_with_all"');
   }
 }
+
+/**
+ * Parses a rule that checks if a value must not be present if the another field is equal to any value.
+ */
+export class MissingIf implements Ruling {
+  /**
+   * The name of the rule.
+   */
+  ruleName(): string {
+    return "missing_if";
+  }
+
+  /**
+   * Parses a rule that checks if a value must not be present if the another field is equal to any value. It breaks the rule into operands and returns them.
+   * @param rule The rule to parse.
+   * @returns The operands of the rule.
+   * @throws Error when the rule does not accept operands
+   */
+  parseRule(rule: string): Operands {
+    if (rule.startsWith("missing_if:")) {
+      const operands = parseOperands(rule);
+      if (operands.length % 2 === 0) {
+        return {
+          keyValuePairs: operands,
+        };
+      }
+    }
+
+    throw new Error('Invalid rule: "missing_if"');
+  }
+}

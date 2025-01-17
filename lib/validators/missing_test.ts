@@ -1,5 +1,5 @@
 import { assertEquals } from "@std/assert/equals";
-import { Missing, MissingWith, MissingWithoutAll } from "./missing.ts";
+import { Missing, MissingIf, MissingWith, MissingWithAll } from "./missing.ts";
 
 Deno.test("missing: is present", () => {
   const missing = new Missing();
@@ -43,35 +43,74 @@ Deno.test("missing_with: is present", () => {
   assertEquals(actual, undefined);
 });
 
-Deno.test("missing_without: is present", () => {
-  const missingWithout = new MissingWithoutAll();
-  let actual = missingWithout.validate({ foo: "bar" }, {
+Deno.test("missing_with_all: is present", () => {
+  const missingWithAll = new MissingWithAll();
+  let actual = missingWithAll.validate({ foo: "abc" }, {
     attribute: "foo",
     values: ["bar"],
   });
   assertEquals(actual, undefined);
 
-  actual = missingWithout.validate({ bar: true }, {
+  actual = missingWithAll.validate({ foo: "abc", bar: "efg" }, {
     attribute: "foo",
     values: ["bar"],
   });
-  assertEquals(actual, undefined);
+  assertEquals(actual, "foo.missing_with_all");
 
-  actual = missingWithout.validate({ foo: "bar", bar: true }, {
+  actual = missingWithAll.validate({ foo: "abc", bar: "efg", baz: "hij" }, {
     attribute: "foo",
-    values: ["bar"],
+    values: ["bar", "baz"],
   });
-  assertEquals(actual, "foo.missing_without_all");
+  assertEquals(actual, "foo.missing_with_all");
+});
 
-  actual = missingWithout.validate({ foo: "bar", bar: true }, {
+Deno.test("missing_if: is present", () => {
+  const missingIf = new MissingIf();
+  let actual = missingIf.validate({ foo: "abc", bar: "efg" }, {
     attribute: "foo",
-    values: ["baz"],
-  });
-  assertEquals(actual, undefined);
-
-  actual = missingWithout.validate({ foo: "bar", baz: true }, {
-    attribute: "foo",
-    values: ["bar"],
+    keyValuePairs: ["bar", "hij"],
   });
   assertEquals(actual, undefined);
+
+  actual = missingIf.validate({ bar: true }, {
+    attribute: "foo",
+    keyValuePairs: ["bar", "true"],
+  });
+  assertEquals(actual, undefined);
+
+  actual = missingIf.validate({ bar: false }, {
+    attribute: "foo",
+    keyValuePairs: ["bar", "false"],
+  });
+  assertEquals(actual, undefined);
+
+  actual = missingIf.validate({ foo: "abc", bar: 123 }, {
+    attribute: "foo",
+    keyValuePairs: ["bar", "123"],
+  });
+  assertEquals(actual, "foo.missing_if");
+
+  actual = missingIf.validate({ foo: "abc", bar: "123" }, {
+    attribute: "foo",
+    keyValuePairs: ["bar", "456"],
+  });
+  assertEquals(actual, undefined);
+
+  actual = missingIf.validate({ foo: "abc", bar: 123 }, {
+    attribute: "foo",
+    keyValuePairs: ["bar", "123", "baz", "456"],
+  });
+  assertEquals(actual, "foo.missing_if");
+
+  actual = missingIf.validate({ baz: "456" }, {
+    attribute: "foo",
+    keyValuePairs: ["bar", "123", "baz", "456"],
+  });
+  assertEquals(actual, undefined);
+
+  actual = missingIf.validate({ foo: "abc", bar: null }, {
+    attribute: "foo",
+    keyValuePairs: ["bar", "null", "baz", "456"],
+  });
+  assertEquals(actual, "foo.missing_if");
 });

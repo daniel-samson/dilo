@@ -1,5 +1,5 @@
 import { assertEquals } from "@std/assert/equals";
-import { Missing, MissingWith, MissingWithAll } from "./mod.ts";
+import { Missing, MissingIf, MissingWith, MissingWithAll } from "./missing.ts";
 import { assertThrows } from "@std/assert/throws";
 
 Deno.test("Test missing", () => {
@@ -63,5 +63,29 @@ Deno.test("Test missing_with_all", () => {
     },
     Error,
     'Invalid rule: "missing_with_all"',
+  );
+});
+
+Deno.test("Test missing_if", () => {
+  const missingIf = new MissingIf();
+  const actual = missingIf.parseRule("missing_if:foo,bar");
+  const expected = { keyValuePairs: ["foo", "bar"] };
+  assertEquals(actual, expected);
+  assertEquals(missingIf.ruleName(), "missing_if");
+
+  assertThrows(
+    () => {
+      missingIf.parseRule("missing_if:");
+    },
+    Error,
+    "Invalid rule: requires at least one key",
+  );
+
+  assertThrows(
+    () => {
+      missingIf.parseRule("missing_if");
+    },
+    Error,
+    'Invalid rule: "missing_if"',
   );
 });

@@ -1,6 +1,7 @@
 import { assertEquals } from "@std/assert/equals";
 import { Dilo } from "./dilo.ts";
 import { assertThrows } from "@std/assert/throws";
+import { assertNotEquals } from "@std/assert/not-equals";
 
 Deno.test("Dilo: simple validate", () => {
   const rules = {
@@ -77,4 +78,16 @@ Deno.test("Dilo: no rules", () => {
     Error,
     "No rules have been registered",
   );
+});
+
+Deno.test("Dilo: parse field rules with underscore", () => {
+  const rules = {
+    foo: "missing_if:bar,efg",
+  };
+
+  const dilo = Dilo.make(rules);
+  const actual = dilo.validate({ foo: "abc", bar: "efg" });
+  const expected = { foo: ["foo must not be present when bar is efg."] };
+  assertNotEquals(actual, undefined);
+  assertEquals(actual, expected as Record<string, string[] | undefined>);
 });

@@ -40,7 +40,12 @@ export class RuleParser implements RuleParserInterface {
 
       // find the rule parser that matches the rule
       for (const ruleParser of this.ruleParsers) {
-        if (trimmedRule.startsWith(ruleParser.ruleName())) {
+        let ruleName = trimmedRule;
+        if (trimmedRule.includes(":")) {
+          ruleName = trimmedRule.split(":")[0];
+        }
+
+        if (ruleName === ruleParser.ruleName()) {
           const parsedOperands = ruleParser.parseRule(rule);
           parsedRules.push({
             rule: ruleParser.ruleName(),
