@@ -107,7 +107,7 @@ Deno.test("Dilo: returns multiple errors for each field", () => {
   assertEquals(actual, expected as Record<string, string[] | undefined>);
 });
 
-Deno.test("Dilo: warn when rull is not registered", () => {
+Deno.test("Dilo: warn when rule is not registered", () => {
   const rules = {
     foo: "not_registered",
   };
