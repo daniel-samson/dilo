@@ -2,6 +2,7 @@ import { assertEquals } from "@std/assert/equals";
 import { Dilo } from "./dilo.ts";
 import { assertThrows } from "@std/assert/throws";
 import { assertNotEquals } from "@std/assert/not-equals";
+import { assertSpyCall, assertSpyCalls, spy } from "jsr:@std/testing/mock";
 
 Deno.test("Dilo: simple validate", () => {
   const rules = {
@@ -104,4 +105,29 @@ Deno.test("Dilo: returns multiple errors for each field", () => {
     foo: ["foo must start with abc.", "foo must end with efg."],
   };
   assertEquals(actual, expected as Record<string, string[] | undefined>);
+});
+
+Deno.test("Dilo: warn when rull is not registered", () => {
+  const rules = {
+    foo: "not_registered",
+  };
+
+  const logSpy = spy(console, "warn");
+
+  const dilo = Dilo.make(rules);
+  const actual = dilo.validate({ foo: "zabcefgz" });
+  const expected = undefined;
+  assertEquals(actual, expected);
+  try {
+    // Assert that the `log` function was called just once.
+    assertSpyCalls(logSpy, 1);
+
+    // Assert that the `log` function was called with the correct arguments.
+    assertSpyCall(logSpy, 0, {
+      args: [`Rule "not_registered" is not registered.`],
+    });
+  } finally {
+    // Restore the logger.log function to stop spying it.
+    logSpy.restore();
+  }
 });

@@ -40,7 +40,8 @@ export class Dilo {
     }
 
     for (const field of fields) {
-      this.parsedRules[field] = ruleParser.parseFieldRules(field, rules[field]);
+      const parsedRules = ruleParser.parseFieldRules(field, rules[field]);
+      this.parsedRules[field] = parsedRules;
     }
     this.validators = validators;
     this.rules = rules;
