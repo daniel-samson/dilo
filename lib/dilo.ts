@@ -61,16 +61,18 @@ export class Dilo {
 
     const fields = Object.keys(this.rules);
     for (const field of fields) {
-      const fieldValidation = this.validateField(field, object);
+      const fieldErrors = this.validateField(field, object);
 
-      if (fieldValidation !== undefined) {
-        const fieldName = this.extractFieldName(fieldValidation.errorCode);
-        if (!(fieldName in validation)) {
-          validation[fieldName] = [];
-        }
+      if (fieldErrors !== undefined) {
+        for (const fieldError of fieldErrors) {
+          const fieldName = this.extractFieldName(fieldError.errorCode);
+          if (!(fieldName in validation)) {
+            validation[fieldName] = [];
+          }
 
-        (validation[fieldName] as string[]).push(fieldValidation.translation);
-      } // else its undefined, so we can ignore it
+          (validation[fieldName] as string[]).push(fieldError.translation);
+        } // else its undefined, so we can ignore it
+      }
     }
 
     if (Object.keys(validation).length > 0) {
@@ -89,8 +91,9 @@ export class Dilo {
   private validateField(
     field: string,
     object: Record<string, Value>,
-  ): ValidatesError | undefined {
+  ): ValidatesError[] | undefined {
     const fieldParsingRules = this.parsedRules[field];
+    const validationErrors: ValidatesError[] = [];
     for (const parsedRule of fieldParsingRules) {
       const key = parsedRule.rule;
       const valid = this.validators[key].validate(object, parsedRule.operands);
@@ -100,12 +103,16 @@ export class Dilo {
       }
 
       if (typeof valid === "string") {
-        return {
+        validationErrors.push({
           errorCode: valid,
           operands: parsedRule.operands,
           translation: this.translator.translate(valid, parsedRule.operands),
-        };
+        });
       }
+    }
+
+    if (validationErrors.length > 0) {
+      return validationErrors;
     }
 
     return undefined;

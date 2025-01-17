@@ -30,6 +30,7 @@ Deno.test("Dilo: validate required", () => {
   assertEquals(actual, {
     "foo": [
       "foo field is required.",
+      "foo must be a numeric value",
     ],
   });
 });
@@ -89,5 +90,18 @@ Deno.test("Dilo: parse field rules with underscore", () => {
   const actual = dilo.validate({ foo: "abc", bar: "efg" });
   const expected = { foo: ["foo must not be present when bar is efg."] };
   assertNotEquals(actual, undefined);
+  assertEquals(actual, expected as Record<string, string[] | undefined>);
+});
+
+Deno.test("Dilo: returns multiple errors for each field", () => {
+  const rules = {
+    foo: "starts_with:abc|ends_with:efg",
+  };
+
+  const dilo = Dilo.make(rules);
+  const actual = dilo.validate({ foo: "zabcefgz" });
+  const expected = {
+    foo: ["foo must start with abc.", "foo must end with efg."],
+  };
   assertEquals(actual, expected as Record<string, string[] | undefined>);
 });
