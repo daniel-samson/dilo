@@ -131,3 +131,51 @@ export class MissingIf implements Validates {
     return undefined;
   }
 }
+
+/**
+ * Validates that a value must not be present unless the another field is equal to any value.
+ */
+export class MissingUnless implements Validates {
+  /**
+   * Validates that a value must not be present unless the another field is equal to any value.
+   * @param haystack The object to validate against.
+   * @param operands The operands to the rule.
+   * @returns A string containing the error message if the value is invalid, false if the value is valid but validation should discontinue, or undefined if the value is valid.
+   */
+  validate(
+    haystack: Haystack,
+    operands: Operands,
+  ): string | false | undefined {
+    const needle = operands["attribute"] as string;
+    const keyValuePairs = operands["keyValuePairs"] as [string, Value];
+    const keysInHaystack = Object.keys(haystack);
+
+    for (let i = 0; i < keyValuePairs.length; i += 2) {
+      const key = keyValuePairs[i] as string;
+      let value = keyValuePairs[i + 1];
+
+      if (value === null || value === "null") {
+        value = null;
+      } else if (!Number.isNaN(Number(value))) {
+        value = Number(value);
+      } else if (value === "true" || value === "false") {
+        value = value === "true";
+      } else {
+        value = value as string;
+      }
+
+      // TODO: fix
+      if (
+        !(keysInHaystack.includes(key) && haystack[key] === value) &&
+        keysInHaystack.includes(needle)
+      ) {
+        // add other and value to operands for translated error message
+        operands["other"] = key;
+        operands["value"] = value;
+        return `${needle}.missing_unless`;
+      }
+    }
+
+    return undefined;
+  }
+}

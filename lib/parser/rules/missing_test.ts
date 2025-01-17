@@ -1,5 +1,11 @@
 import { assertEquals } from "@std/assert/equals";
-import { Missing, MissingIf, MissingWith, MissingWithAll } from "./missing.ts";
+import {
+  Missing,
+  MissingIf,
+  MissingUnless,
+  MissingWith,
+  MissingWithAll,
+} from "./missing.ts";
 import { assertThrows } from "@std/assert/throws";
 
 Deno.test("Test missing", () => {
@@ -87,5 +93,29 @@ Deno.test("Test missing_if", () => {
     },
     Error,
     'Invalid rule: "missing_if"',
+  );
+});
+
+Deno.test("Test missing_unless", () => {
+  const missingUnless = new MissingUnless();
+  const actual = missingUnless.parseRule("missing_unless:foo,bar");
+  const expected = { keyValuePairs: ["foo", "bar"] };
+  assertEquals(actual, expected);
+  assertEquals(missingUnless.ruleName(), "missing_unless");
+
+  assertThrows(
+    () => {
+      missingUnless.parseRule("missing_unless:");
+    },
+    Error,
+    "Invalid rule: requires at least one key",
+  );
+
+  assertThrows(
+    () => {
+      missingUnless.parseRule("missing_unless");
+    },
+    Error,
+    'Invalid rule: "missing_unless"',
   );
 });

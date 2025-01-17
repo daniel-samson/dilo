@@ -37,7 +37,13 @@ import {
 import { Url } from "./url.ts";
 import { Ulid } from "./ulid.ts";
 import { Uuid } from "./uuid.ts";
-import { Missing, MissingIf, MissingWith, MissingWithAll } from "./missing.ts";
+import {
+  Missing,
+  MissingIf,
+  MissingUnless,
+  MissingWith,
+  MissingWithAll,
+} from "./missing.ts";
 import { SameField } from "./same.ts";
 import { MacAddress } from "./mac_address.ts";
 import { Ip, Ipv4, Ipv6 } from "./ip.ts";
@@ -82,6 +88,7 @@ const BuiltInValidators: Record<string, Validates> = {
   "missing": new Missing(),
   "missing_with": new MissingWith(),
   "missing_with_all": new MissingWithAll(),
+  "missing_unless": new MissingUnless(),
   "missing_if": new MissingIf(),
   "same_field": new SameField(),
   "mac_address": new MacAddress(),

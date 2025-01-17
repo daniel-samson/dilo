@@ -1,5 +1,11 @@
 import { assertEquals } from "@std/assert/equals";
-import { Missing, MissingIf, MissingWith, MissingWithAll } from "./missing.ts";
+import {
+  Missing,
+  MissingIf,
+  MissingUnless,
+  MissingWith,
+  MissingWithAll,
+} from "./missing.ts";
 
 Deno.test("missing: is present", () => {
   const missing = new Missing();
@@ -113,4 +119,43 @@ Deno.test("missing_if: is present", () => {
     keyValuePairs: ["bar", "null", "baz", "456"],
   });
   assertEquals(actual, "foo.missing_if");
+});
+
+Deno.test("missing_unless: is present", () => {
+  const missingUnless = new MissingUnless();
+  let actual = missingUnless.validate({ foo: "abc", bar: "efg" }, {
+    attribute: "foo",
+    keyValuePairs: ["bar", "efg"],
+  });
+  assertEquals(actual, undefined);
+
+  actual = missingUnless.validate({ bar: "efg" }, {
+    attribute: "foo",
+    keyValuePairs: ["bar", "abc"],
+  });
+  assertEquals(actual, undefined);
+
+  actual = missingUnless.validate({ foo: "abc", bar: "efg", baz: null }, {
+    attribute: "foo",
+    keyValuePairs: ["bar", "efg", "baz", "null"],
+  });
+  assertEquals(actual, undefined);
+
+  actual = missingUnless.validate({ foo: "abc", bar: "efg", baz: false }, {
+    attribute: "foo",
+    keyValuePairs: ["bar", "efg", "baz", "false"],
+  });
+  assertEquals(actual, undefined);
+
+  actual = missingUnless.validate({ foo: "abc", bar: 321 }, {
+    attribute: "foo",
+    keyValuePairs: ["bar", "123"],
+  });
+  assertEquals(actual, "foo.missing_unless");
+
+  actual = missingUnless.validate({ foo: "abc", bar: "efg", baz: false }, {
+    attribute: "foo",
+    keyValuePairs: ["bar", "efg", "baz", "hij"],
+  });
+  assertEquals(actual, "foo.missing_unless");
 });
