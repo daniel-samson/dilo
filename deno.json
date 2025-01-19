@@ -11,8 +11,7 @@
     "coverage-html": "rm -fr coverage/ && deno test --coverage && deno coverage --lcov --output=cov.lcov && deno coverage --html",
     "qa": "deno fmt && deno lint && deno test",
     "lint-docs": "deno lint -- --doc lib/**/*.ts",
-    "docs": "deno doc --html lib/**/*.ts",
-    "bench": "deno bench src/"
+    "docs": "deno doc --html lib/**/*.ts"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1"
