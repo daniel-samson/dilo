@@ -19,7 +19,7 @@ export class SameField implements Validates {
     const other = operands["other"] as string;
     const value = haystack[needle];
     if (value !== haystack[other]) {
-      return `${needle}.same_field`;
+      return `${needle}.same`;
     }
 
     return undefined;

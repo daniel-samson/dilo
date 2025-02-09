@@ -109,4 +109,5 @@ export const BuiltInParsingRules: Ruling[] = [
   new Ip(),
   new Ipv4(),
   new Ipv6(),
+  new Same(),
 ];
