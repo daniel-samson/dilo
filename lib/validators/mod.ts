@@ -90,7 +90,7 @@ const BuiltInValidators: Record<string, Validates> = {
   "missing_with_all": new MissingWithAll(),
   "missing_unless": new MissingUnless(),
   "missing_if": new MissingIf(),
-  "same_field": new SameField(),
+  "same": new SameField(),
   "mac_address": new MacAddress(),
   "ip": new Ip(),
   "ipv4": new Ipv4(),
