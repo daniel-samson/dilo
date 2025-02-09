@@ -131,3 +131,17 @@ Deno.test("Dilo: warn when rule is not registered", () => {
     logSpy.restore();
   }
 });
+
+Deno.test("Dilo: password and confirm password do not match", () => {
+  const rules = {
+    password: "required|string",
+    confirm: "required|string|same:password",
+  };
+
+  const dilo = Dilo.make(rules);
+  const actual = dilo.validate({ password: "123456", confirm: "abcdef" });
+  const expected = {
+    confirm: ["confirm and password must match."],
+  };
+  assertEquals(actual, expected);
+});
